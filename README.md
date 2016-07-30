@@ -15,6 +15,8 @@ git clone https://github.com/blakejakopovic/dotfiles ~/.dotfiles
 # Run bootstrap script
 ~/.dotfiles/install
 ```
+For additional customisation, please use the `.private` file to store personal information, such as git credentials. Note that you must also rename `.private.sample` to `.private` and that the `.private` file is not tracked by git.
+
 
 NB. The bootstrap script can be run multiple times, and should be run again after updates.
 

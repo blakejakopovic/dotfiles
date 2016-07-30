@@ -1,9 +1,6 @@
-[user]
-	email = blake.jakopovic@gmail.com
-	name = Blake Jakopovic
 [core]
 	editor = nano
-	excludesfile = /Users/blakejakopovic/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	quotepath = false
 [alias]
 	b = branch

@@ -1,6 +1,3 @@
-[user]
-	email = blake.jakopovic@gmail.com
-	name = Blake Jakopovic
 [core]
 	editor = nano
 	excludesfile = ~/.gitignore_global
