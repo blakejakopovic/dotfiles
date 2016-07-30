@@ -1,0 +1,13 @@
+# ~/.dotfiles/.exports
+
+# Set language
+export LC_ALL=en_AU.UTF-8
+export LANG=en_AU.UTF-8
+
+# Make vim the default editor.
+export VISUAL=vim
+export EDITOR="$VISUAL"
+export SUDO_EDITOR="$VISUAL"
+
+# Don't clear the screen after quitting a manual page.
+export MANPAGER='less -X'

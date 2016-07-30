@@ -1,0 +1,23 @@
+#!/bin/bash
+
+BASEDIR="$HOME/.dotfiles/arch"
+LINKCMD="ln -is"
+
+echo "Installing arch dotfiles..."
+
+# Ensure paths
+mkdir -p ~/.i3
+mkdir -p ~/.config/termite
+
+# Symlink dotfiles
+${LINKCMD} ${BASEDIR}/.compton.conf ~/
+${LINKCMD} ${BASEDIR}/.gitconfig ~/.gitconfig
+${LINKCMD} ${BASEDIR}/.gitignore_global ~/.gitignore_global
+${LINKCMD} ${BASEDIR}/.i3status.conf ~/
+${LINKCMD} ${BASEDIR}/.xbindkeysrc ~/.xbindkeysrc
+${LINKCMD} ${BASEDIR}/.xinitrc ~/.xinitrc
+${LINKCMD} ${BASEDIR}/.Xresources ~/.Xresources
+
+# Symlink config files
+${LINKCMD} ${BASEDIR}/i3.conf ~/.i3/config
+${LINKCMD} ${BASEDIR}/termite.conf ~/.config/termite/config

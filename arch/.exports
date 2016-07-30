@@ -1,0 +1,3 @@
+# ~/.dotfiles/arch/.exports
+
+export BROWSER=firefox

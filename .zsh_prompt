@@ -1,0 +1,4 @@
+# ~/.dotfiles/.zsh_prompt
+
+# Set the default ZSH prompt (fallback from OS)
+PROMPT='[zsh] %n@%m %~ %B$%b '

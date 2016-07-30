@@ -1,0 +1,19 @@
+# ~/.dotfiles/.zsh_exports
+
+# Load ZSH Modules
+autoload -Uz compinit promptinit history-search-end
+compinit
+promptinit
+
+# Enable prompt subsitution
+setopt PROMPT_SUBST
+
+# Enable history
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt inc_append_history share_history
+setopt HIST_IGNORE_SPACE
+
+# Readline
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line

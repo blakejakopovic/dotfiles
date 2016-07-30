@@ -1,0 +1,14 @@
+# ~/dotfiles/.bash_exports
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r;"
+
+# Increase Bash history size. Allow 32^3 entries; the default is 500.
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
+
+# Omit duplicates and commands that begin with a space from history.
+export HISTCONTROL='ignoredups:erasedups'
+
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend

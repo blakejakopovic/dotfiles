@@ -1,0 +1,9 @@
+Xft.autohint:   0
+Xft.lcdfilter:  lcddefault
+Xft.antialias:  true
+Xft.hinting:    true
+#Xft.hintstyle:  hintslight
+Xft.hintstyle:  hintfull
+Xft.rgba:       rgb
+! non-retina = 96 / 196 / 220
+Xft.dpi:        196

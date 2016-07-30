@@ -1,0 +1,10 @@
+# ~/.osx/.bash_prompt
+
+# Enable GIT current branch info
+if [ -f "/usr/local/etc/bash_completion.d/git-prompt.sh" ]; then
+    source /usr/local/etc/bash_completion.d/git-prompt.sh
+    export GIT_PS1_SHOWDIRTYSTATE=1
+
+    ## blakejakopovic@BMBP ~/OSS/bitcoin (master) $
+    PS1="[bash] \[\e[0;37m\]\u@\h \w\[\e[0;32m\]\$(__git_ps1)\e\[m \[\e[01;37m\]\\$\[\e[0;37m\] "
+fi

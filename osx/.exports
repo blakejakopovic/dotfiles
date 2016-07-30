@@ -1,0 +1,4 @@
+# ~/.osx/.exports
+
+# Backup
+export BACKUP_PATH="$HOME/.backup"

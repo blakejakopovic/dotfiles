@@ -1,0 +1,14 @@
+# ~/.dotfiles/.zsh_extensions
+
+# zsh-syntax-highlighting -- https://github.com/zsh-users/zsh-syntax-highlighting
+if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then # OS X (homebrew)
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then # AUR
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# Base16 Shell -- https://github.com/chriskempson/base16-shell.git
+if [[ -f $HOME/.config/base16-shell/scripts/base16-phd.sh ]]; then
+  BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-phd.sh"
+  [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+fi

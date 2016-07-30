@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#
+# dotfiles -- Personal dot file repo
+# Author: Blake Jakopovic
+# Git:    https://github.com/blakejakopovic/dotfiles
+#
+
+BASEDIR="$HOME/.dotfiles"
+EXTDIR="${BASEDIR}/extensions"
+LINKCMD="ln -is"
+
+echo "Installing global dotfiles..."
+
+# Symlink dotfiles
+${LINKCMD} ${BASEDIR}/.bashrc ~/.bashrc
+${LINKCMD} ${BASEDIR}/.bash_profile ~/.bash_profile
+${LINKCMD} ${BASEDIR}/.curlrc ~/.curlrc
+${LINKCMD} ${BASEDIR}/.gemrc ~/.gemrc
+${LINKCMD} ${BASEDIR}/.hushlogin ~/.hushlogin
+${LINKCMD} ${BASEDIR}/.nanorc ~/.nanorc
+${LINKCMD} ${BASEDIR}/.screenrc ~/.screenrc
+${LINKCMD} ${BASEDIR}/.tmuxrc ~/.tmuxrc
+${LINKCMD} ${BASEDIR}/.vimrc ~/.vimrc
+${LINKCMD} ${BASEDIR}/.wgetrc ~/.wgetrc
+${LINKCMD} ${BASEDIR}/.zshrc ~/.zshrc
+
+# Install OS specific dotfiles
+if [[ `uname -s` == "Darwin" ]]; then
+  sh ${BASEDIR}/osx/install
+elif [[ -f "/etc/arch-release" ]]; then
+  sh ${BASEDIR}/arch/install
+# elif [[ -f "/etc/debian_version" ]]; then
+#   ~/.dotfiles/debian/install
+fi
+
+echo "Done :)"

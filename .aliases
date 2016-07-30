@@ -1,0 +1,277 @@
+# ~/.dotfiles/.aliases
+
+# Terminal
+alias c='clear'
+alias home='cd ~/ && clear'
+alias h='home'
+alias ,='home'
+alias ,,='cd ~/ && reset'
+
+# Directory
+alias ~='cd ~'
+alias -- -='cd -'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias WS='cd ~/WS/'
+alias ws='WS'
+alias OSS='cd ~/OSS'
+alias oss='OSS'
+alias o='open .'
+
+# Grep
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias lsgrep="ls -al | grep --color=auto"
+
+# Ruby
+alias gu='gem update'
+
+# Git
+alias g='git'
+alias s='git status'
+alias gm='git checkout master'
+alias gaa='git add .'
+alias gcm='git commit -m'
+alias egi='nano .gitignore'
+
+ossgc() {
+  cd ~/OSS
+  git clone $1 $2
+  if [ $2 ]; then
+    cd $2
+  fi
+}
+
+# SSH
+function ssh-fingerprint {
+  if [ -z "$1" ]; then
+    ssh-keygen -l -f ~/.ssh/id_rsa.pub
+  else
+    ssh-keygen -l -f $1
+  fi
+}
+
+# Mount
+alias mountc="mount | column -t"
+
+# Files
+alias find-hard-links="find / -xdev -samefile" #FILE
+alias find-hard-link-id="find / -xdev -inum" #INODE_ID
+
+# Vim
+alias v=vim
+alias vi=vim
+
+# Local tunnel (without tty)
+# ssh -nNTf -L 9000:imgur.com:80 user@example.com
+# (eg. ssh -nNTf -L 9000:imgur.com:80 user@example.com)
+
+# Reverse/remote tunnel ('GatewayPorts yes' is required on server sshd_config)
+# ssh -NT -R 9292:localhost:22 user@host
+
+# Socks proxy
+# ssh -D 12345 user@host.domain
+alias ssh-socks="ssh -D"
+
+# Start SSH session in the background with no command or tty
+alias sshbg="ssh -nNTf"
+
+# IP
+alias ipaddr='curl -s icanhazip.com'
+alias ipcalc='ipcalc --nocolor'
+alias ip2location='geoiplookup'
+alias ip2country="geoiplookup $1 | head -1 | awk '{print \$5}'"
+
+# Port
+alias portscan='sudo nmap -sS -A -v' # portscan HOST
+
+# HTTP
+remote-length() { # remote-length URL
+  curl -sI "$1" | awk '/Content-Length/ { print $2 }'
+}
+
+# File
+tab2space() { # tab2space FILE
+  file=$1
+  expand -4 $file > $file
+}
+rmln() { # rmln FILE LINE
+  sed -i -e "$2d" $1
+}
+
+# Audio
+aud2m4r() { # aud2m4r INPUT OUTPUT
+  filename=$(basename "$1")
+  extension="${filename##*.}"
+  filename="${filename%.*}"
+  output="$filename.m4r"
+  afconvert -f m4af "$1" "$output"
+}
+
+# Video
+vid2ipad() { # vid2ipad INPUT
+  filename=$(basename "$1")
+  extension="${filename##*.}"
+  filename="${filename%.*}"
+  output="$filename.mp3.$extension"
+  ffmpeg -i "$1" -vcodec copy -acodec mp3 "$output"
+}
+
+# Youtube
+alias yt='youtube-dl'
+alias youtube2mp3="youtube-dl --extract-audio --audio-format mp3"
+
+# Password gen
+alias genpass='xxd -l 20 -c 20 -p /dev/urandom'
+
+# Speedtest
+alias speedtest='speedtest_cli'
+
+# DNS
+alias eh="sudo $EDITOR /etc/hosts"
+alias digs='dig +short'
+
+test-dns() {
+  echo "google.com"
+  dig +short google.com | head -n1
+  echo "facebook.com"
+  dig +short facebook.com | head -n1
+  echo "reddit.com"
+  dig +short reddit.com | head -n1
+}
+
+reverse-dns() {
+  dig -x $1 +short
+}
+
+# DNS Crypt
+test-dnscrypt() {
+  echo "google.com"
+  dig @127.0.0.1 +short google.com | head -n1
+  echo "facebook.com"
+  dig @127.0.0.1 +short facebook.com | head -n1
+  echo "reddit.com"
+  echo \t\ne && dig @127.0.0.1 +short reddit.com | head -n1
+}
+
+# MAC Address
+genmac() {
+  printf '%02X:%02X:%02X:%02X:%02X:%02X\n' $[RANDOM%256] $[RANDOM%256] $[RANDOM%256] $[RANDOM%256] $[RANDOM%256] $[RANDOM%256]
+}
+genmac-apple() {
+  printf '00:0A:95:%02X:%02X:%02X\n' $[RANDOM%256] $[RANDOM%256] $[RANDOM%256]
+}
+
+# Connectivity
+detect-captive-portal() {
+  http_status=`curl -Isw '%{http_code}' -o /dev/null http://clients3.google.com/generate_204`
+  exit_code=$?
+  echo $http_status
+  echo $?
+
+  if [ $http_status -eq "204" ]; then
+    echo "No captive portal"
+  elif [ $exit_code -eq "52" ]; then
+    echo "Captive portal detected"
+  else
+   echo "Check network connection"
+  fi
+
+  ## http://www.apple.com/library/test/success.html
+}
+
+test-net() {
+  http_status_google=`curl -Isw '%{http_code}' -o /dev/null http://clients3.google.com/generate_204`
+  status_code_google=$?
+  http_status_apple=`curl -Isw '%{http_code}' -o /dev/null http://www.apple.com/library/test/success.html`
+  status_code_apple=$?
+
+  if [[ $status_code_google -eq "0" && $http_status_google -eq "204" ]]; then
+    echo "Google OK!"
+  else
+    echo "Google Error :( - $status_code_google"
+  fi
+
+  if [[ $status_code_apple -eq "0" && $http_status_apple -eq "200" ]]; then
+    echo "Apple OK!"
+  else
+    echo "Apple Error :( - $status_code_apple"
+  fi
+}
+
+# Port knocking (use /usr/bin/knock instead)
+function knock {
+ HOST=$1
+ shift
+ for ARG in "$@"
+ do
+   nmap -Pn --host_timeout 100 --max-retries 0 -p $ARG $HOST
+ done
+}
+
+# Find file by name
+hlocate() {
+  find $HOME -name "$1"
+}
+rlocate() {
+  sudo find / -name "$1"
+}
+
+# Find text in files
+#grep "$QUERY" $PATH
+#grep -R "$QUERY" $PATH (recursive)
+
+# arp
+alias arp-local="arp -an"
+
+# ps
+alias psc="ps xawf -eo pid,user,cgroup,args" # ps with cgroups
+function psgrep { # with hack to colorise
+  ps aux | grep $1 | grep -v grep | grep --color=auto $1
+}
+
+# DS_Store
+alias rm_ds_store="find . -name '*.DS_Store' -type f -delete"
+
+# Date
+alias date2="date +%Y-%m-%d"
+alias date3="date +%Y-%m-%d.%H:%M:%S"
+
+# Netstat (port scan)
+alias lsport="sudo netstat -nlp"
+
+# Vim
+alias vim-plugin-install="vim +PluginInstall +qall"
+
+# Ding
+alias ding="tput bel"
+alias ding2='/usr/bin/printf "\a"'
+alias ding3='echo -e "\a"'
+
+# Gpg
+alias gpg-detached-sig="gpg -ba" # FILE
+
+# Dictionary
+function define {
+  curl dict://dict.org/d:$1
+}
+
+# Find zsh alias
+function zsh-find-alias {
+  grep -rnwi "$HOME/.dotfiles" -e "alias $1"
+  # nano +4 FILENAME - to open nano at line
+}
+
+# Colorise cat (require python-pygmentize)
+alias dog="pygmentize -g"
+
+qman() {
+  qman_path=~/.qman
+  man=$1
+  if [[ -f  "$qman_path/$man" ]]; then
+    less "$qman_path/$man"
+  fi
+}

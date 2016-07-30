@@ -1,0 +1,7 @@
+# ~/.dotfiles/bash_prompt
+
+## Set the default PS1
+## blakejakopovic@BMBP ~/OSS/bitcoin $
+PS1="[bash] \[\e[0;37m\]\u@\h \w \[\e[01;37m\]\\$\[\e[0;37m\] "
+
+export PS1

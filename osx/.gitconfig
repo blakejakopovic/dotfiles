@@ -1,0 +1,51 @@
+[user]
+	email = blake.jakopovic@gmail.com
+	name = Blake Jakopovic
+[core]
+	editor = nano
+	excludesfile = /Users/blakejakopovic/.gitignore_global
+	quotepath = false
+[alias]
+	b = branch
+	s = status
+	ls = ls-files
+	c = commit
+	cm = commit -m
+	ch = checkout
+	rs = rebase --squash -i
+	ms = merge --squash
+	smu = submodule update --init --recursive
+	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	restore = !git checkout $(git rev-list -n 1 HEAD -- \"$1\")^ -- \"$1\"
+	aa = add --all --intent-to-add
+	ap = add --patch
+	update-timestamp = commit --amend --reset-author
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[branch]
+	autosetuprebase = always
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[merge]
+	tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[advice]
+	statusHints = true
