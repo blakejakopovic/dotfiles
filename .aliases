@@ -20,11 +20,22 @@ alias OSS='cd ~/OSS'
 alias oss='OSS'
 alias o='open .'
 
+# Files
+alias cpr="cp -R"
+alias find-hard-links="find / -xdev -samefile" #FILE
+alias find-hard-link-id="find / -xdev -inum" #INODE_ID
+
 # Grep
 alias grep="grep --color=auto"
+alias grep-not="grep --color=auto -L"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
+alias igrep="grep -i"
 alias lsgrep="ls -al | grep --color=auto"
+alias catg="fgrep"
+
+# Helpers
+alias one-per-line="sed 's/\s/\n/g'"
 
 # Ruby
 alias gu='gem update'
@@ -38,15 +49,24 @@ alias gcm='git commit -m'
 alias egi='nano .gitignore'
 
 ossgc() {
-  cd ~/OSS
-  git clone $1 $2
-  if [ $2 ]; then
-    cd $2
-  fi
+  url=$1
+  project=`echo $url | awk -F/ '{print $(NF-0)}'`
+  projectpath="$HOME/OSS/$project"
+  mkdir -p "$HOME/OSS"
+  git clone "$url" "$projectpath"
+  cd $projectpath
+}
+
+# User
+killuser () {
+  user=$1
+  pgrep -u $user
+  ps -fp $(pgrep -u $user)
+  killall -KILL -u $user
 }
 
 # SSH
-function ssh-fingerprint {
+ssh-fingerprint () {
   if [ -z "$1" ]; then
     ssh-keygen -l -f ~/.ssh/id_rsa.pub
   else
@@ -57,27 +77,20 @@ function ssh-fingerprint {
 # Mount
 alias mountc="mount | column -t"
 
-# Files
-alias find-hard-links="find / -xdev -samefile" #FILE
-alias find-hard-link-id="find / -xdev -inum" #INODE_ID
-
 # Vim
 alias v=vim
 alias vi=vim
 
 # Local tunnel (without tty)
-# ssh -nNTf -L 9000:imgur.com:80 user@example.com
-# (eg. ssh -nNTf -L 9000:imgur.com:80 user@example.com)
-
-# Reverse/remote tunnel ('GatewayPorts yes' is required on server sshd_config)
-# ssh -NT -R 9292:localhost:22 user@host
+alias ssh-bg="ssh -nNTf"                # Start SSH session in the background (without tty)
+alias ssh-local-tunnel="ssh -nNTf -L"   # 9000:hostB:80 user@host
+alias ssh-remote-tunnel="# ssh -NT -R"  # 9292:localhost:22 user@host
 
 # Socks proxy
-# ssh -D 12345 user@host.domain
-alias ssh-socks="ssh -D"
+alias ssh-socks="ssh -D" # 12345 user@host
 
-# Start SSH session in the background with no command or tty
-alias sshbg="ssh -nNTf"
+# Curl
+alias curl-no-cache="curl -H 'Cache-Control: no-cache'"
 
 # IP
 alias ipaddr='curl -s icanhazip.com'
@@ -135,11 +148,15 @@ alias eh="sudo $EDITOR /etc/hosts"
 alias digs='dig +short'
 
 test-dns() {
-  echo "google.com"
+  if [[ ! `command -v dig` ]]; then
+    echo "Please install dig package"
+    return
+  fi
+  echo -n "google.com "
   dig +short google.com | head -n1
-  echo "facebook.com"
+  echo -n "facebook.com "
   dig +short facebook.com | head -n1
-  echo "reddit.com"
+  echo -n "reddit.com "
   dig +short reddit.com | head -n1
 }
 
@@ -149,6 +166,10 @@ reverse-dns() {
 
 # DNS Crypt
 test-dnscrypt() {
+  if [[ ! `command -v dig` ]]; then
+    echo "Please install dig"
+    exit -1
+  fi
   echo "google.com"
   dig @127.0.0.1 +short google.com | head -n1
   echo "facebook.com"
@@ -224,6 +245,7 @@ rlocate() {
 #grep "$QUERY" $PATH
 #grep -R "$QUERY" $PATH (recursive)
 
+
 # arp
 alias arp-local="arp -an"
 
@@ -268,10 +290,24 @@ function zsh-find-alias {
 # Colorise cat (require python-pygmentize)
 alias dog="pygmentize -g"
 
+# Man
+# http://unix.stackexchange.com/questions/18087/can-i-get-individual-man-pages-for-the-bash-builtin-commands
+man () {
+  case "$(type -t "$1"):$1" in
+    builtin:*) help "$1" | "${PAGER:-less}";;     # built-in
+    *[[?*]*) help "$1" | "${PAGER:-less}";;       # pattern
+    *) command -p man "$@";;  # something else, presumed to be an external command
+                              # or options for the man command or a section number
+  esac
+}
+
 qman() {
-  qman_path=~/.qman
-  man=$1
-  if [[ -f  "$qman_path/$man" ]]; then
-    less "$qman_path/$man"
+  qman_path="$HOME/.qman"
+  qman=$1
+  if [[ -f  "$qman_path/$qman" ]]; then
+    less "$qman_path/$qman"
   fi
 }
+
+# Media
+alias timelapse-jpg2mp4="cat *.jpg | ffmpeg -f image2pipe -r 25 -vcodec mjpeg -i - -vcodec libx264 out2.mp4"
