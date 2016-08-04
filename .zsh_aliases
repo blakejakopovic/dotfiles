@@ -1,4 +1,0 @@
-# ~/.dotfiles/.zsh_aliases
-
-# Directory
-alias ../='cd ..'
