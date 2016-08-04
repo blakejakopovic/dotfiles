@@ -60,16 +60,16 @@ alias pacmir="sudo pacman -Syy"                    # Force refresh of all packag
 alias pacunlock="sudo rm /var/lib/pacman/db.lck"   # Delete the lock file /var/lib/pacman/db.lck
 alias paclock="sudo touch /var/lib/pacman/db.lck"  # Create the lock file /var/lib/pacman/db.lck
 
-# checkupdates T To find oudated packages
+# checkupdates      # To find oudated packages
 
-# pacman -Qen # To list explicitly installed packages available in the official repositories:
-# pacman -Qem # To list explicitly installed packages not available in official repositories:
-# pacman -Qqn # Listing official installed packages only
+# pacman -Qen       # To list explicitly installed packages available in the official repositories:
+# pacman -Qem       # To list explicitly installed packages not available in official repositories:
+# pacman -Qqn       # Listing official installed packages only
 
-# pacman -Qnq # list all official installed packages
-# yaourt -Qmq # list all aur install packages
+# pacman -Qnq       # list all official installed packages
+# yaourt -Qmq       # list all aur install packages
 
-# yaourt -Syua # update system including AUR
+# yaourt -Syua      # update system including AUR
 
 # expac
 alias expac-latest="expac --timefmt='%Y-%m-%d %T' '%l\t%n (%v)' | sort | tail -50" # list latest with version
@@ -77,9 +77,9 @@ alias expac-list='expac -s "%-30n"'     # list name only
 alias expac-listv='expac -s "%-30n %v"' # list with version
 alias expac-detailed='expac -HM "%011m\t%-20n\t%10d" $( comm -23 <(pacman -Qqen|sort) <(pacman -Qqg base base-devel|sort) ) | sort -rn'
 
-# Aeroplane mode
-alias airoplane_mode_on="rfkill block 0: phy0"
-alias airoplane_mode_off="rfkill unblock 0: phy0"
+# airplane mode
+alias airplane-mode-on="rfkill block 0: phy0"
+alias airplane-mode-off="rfkill unblock 0: phy0"
 
 # DNSCrypt
 function dnscrypt_enable {
