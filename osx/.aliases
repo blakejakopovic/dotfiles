@@ -29,6 +29,10 @@ hide-hidden-files() {
   killall Finder
 }
 
+# Clipboard
+alias sortuniq-clipboard='pbpaste | sort | uniq | pbcopy'
+alias wc-clipboard='pbpaste | wc -l'
+
 # Homebrew
 alias bu='brew update'
 alias bup='brew upgrade --all'
