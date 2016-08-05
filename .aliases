@@ -1,5 +1,13 @@
 # ~/.dotfiles/.aliases
 
+# If not root (sudo helpers)
+if [ $UID -ne 0 ]; then
+  alias iftop=" sudo iftop"
+  alias iotop="sudo iotop"
+  alias mount="sudo mount"
+  alias nmap="sudo nmap"
+fi
+
 # Terminal
 alias c='clear'
 alias home='cd ~/ && clear'

@@ -1,13 +1,11 @@
 # ~/.dotfiles/arch/.aliases
 
-# If not root (sudo helpers)
 if [ $UID -ne 0 ]; then
-  alias wifi-menu="sudo wifi-menu"
-  alias pacman="sudo pacman"
-  alias systemctl="sudo systemctl"
   alias netctl="sudo netctl"
-  alias mount="sudo mount"
+  alias pacman="sudo pacman"
   alias powertop="sudo powertop"
+  alias systemctl="sudo systemctl"
+  alias wifi-menu="sudo wifi-menu"
 fi
 
 # Directory
