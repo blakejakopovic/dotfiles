@@ -20,7 +20,6 @@ function liveroot_p {
 
 PROMPT='$(liveroot_p)[zsh] %n@%M %~%b%b $ '
 
-
 # Right Prompt
 function last_exit_status {
   last_exit=$?
@@ -90,11 +89,10 @@ function battery_remaining {
   fi
 }
 
-
 if [ ! -z "$DISPLAY" ]; then # hide in desktop environment
   RPROMPT=""
-elif [ `uname -r | grep "^4"` ]; then # show for linux >=4
-  RPROMPT='$(last_exit_status) $(current_ssid_p)[ $(datetime_p) $(battery_gauge_p) $(battery_remaining)]'
+# elif [ `uname -r | grep "^4"` ]; then # show for linux >=4
+  # RPROMPT='$(last_exit_status) $(current_ssid_p)[ $(datetime_p) $(battery_gauge_p) $(battery_remaining)]'
 else
-  RPROMPT='$(last_exit_status) $(current_ssid_p)[ $(datetime_p) ]'
+  RPROMPT='$(last_exit_status) $(current_ssid_p)[ $(datetime_p)]'
 fi

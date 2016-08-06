@@ -12,7 +12,7 @@ function liveroot {
 
 function liveroot_p {
   if [ $(liveroot) -eq 1 ]; then
-    echo ["LIVE] "
+    echo "[LIVE] "
   fi
 }
 
