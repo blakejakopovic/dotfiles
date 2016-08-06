@@ -14,11 +14,12 @@ set smarttab                  " use tabs at the start of a line, spaces elsewher
 set nowrap                    " don't wrap text
 set relativenumber            " show dynamic file line guttering (requires vim 7.4+)
 set number                    " show line numbers
+set formatoptions-=r          " disable auto-commenting on Enter
 
 "
 " VUNDLE BEGIN (plugins below)
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" 
+"
 set rtp+=~/.vim/bundle/Vundle.vim            " set the runtime path to include Vundle
 call vundle#begin()                          " initialize vundle
 Plugin 'VundleVim/Vundle.vim'                " let Vundle manage Vundle, required
