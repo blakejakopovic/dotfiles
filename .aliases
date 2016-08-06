@@ -29,6 +29,9 @@ alias OSS='cd ~/OSS'
 alias oss='OSS'
 alias o='open .'
 
+# mount
+alias mount-dmg='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount' #FILE.dmg
+
 # Files
 alias cpr="cp -R"
 alias find-hard-links="find / -xdev -samefile" #FILE
