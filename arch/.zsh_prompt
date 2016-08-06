@@ -1,5 +1,7 @@
 # ~/.dotfiles/arch/.zshrc
 
+# Requires: wireless_tools
+
 # Left Prompt
 function liveroot {
   check=`cat /proc/cmdline | grep oroot=`
@@ -34,8 +36,7 @@ function datetime_p {
 }
 
 function current_ssid_p {
- SSID="FIXME"
- #`iwgetid -r`
+ SSID=`iwgetid -r 2> /dev/null`
   if [ $? -eq 0 ]; then
     echo "{%F{magenta}$SSID%F{reset}} "
   fi
