@@ -2,13 +2,14 @@
 
 # If not root (sudo helpers)
 if [ $UID -ne 0 ]; then
-  alias iftop=" sudo iftop"
+  alias iftop="sudo iftop"
   alias iotop="sudo iotop"
   alias mount="sudo mount"
   alias nmap="sudo nmap"
 fi
 
 # Terminal
+alias zrc="source ~/.zshrc"
 alias c='clear'
 alias home='cd ~/ && clear'
 alias h='home'
@@ -86,8 +87,9 @@ ssh-fingerprint () {
 alias mountc="mount | column -t"
 
 # Vim
-alias v=vim
-alias vi=vim
+alias v="vim"
+alias vi="vim"
+alias svim="sudo vim"
 
 # Local tunnel (without tty)
 alias ssh-bg="ssh -nNTf"                # Start SSH session in the background (without tty)
@@ -213,9 +215,9 @@ detect-captive-portal() {
 }
 
 test-net() {
-  http_status_google=`curl -Isw '%{http_code}' -o /dev/null http://clients3.google.com/generate_204`
+  http_status_google=`curl -Isw '%{http_code}' -o /dev/null http://clients3.google.com/generate_204 2> /dev/null`
   status_code_google=$?
-  http_status_apple=`curl -Isw '%{http_code}' -o /dev/null http://www.apple.com/library/test/success.html`
+  http_status_apple=`curl -Isw '%{http_code}' -o /dev/null http://www.apple.com/library/test/success.html 2> /dev/null`
   status_code_apple=$?
 
   if [[ $status_code_google -eq "0" && $http_status_google -eq "204" ]]; then
