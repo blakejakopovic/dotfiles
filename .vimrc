@@ -95,7 +95,11 @@ command WQ wq
 command Wq wq
 command Q q
 
+" Allow write to protected files
 cnoremap sudow w !sudo tee % >/dev/null
+
+" Configure NERDCommenter spacing
+let NERDSpaceDelims=1
 
 " Enable touchpad scrolling on iterm2 OS X (requires command below)
 " defaults write com.googlecode.iterm2 AlternateMouseScroll -bool true
