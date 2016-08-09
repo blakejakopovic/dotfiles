@@ -6,10 +6,12 @@ if [ $UID -ne 0 ]; then
   alias iotop="sudo iotop"
   alias mount="sudo mount"
   alias nmap="sudo nmap"
+  alias mtr="sudo mtr"
 fi
 
 # Terminal
 alias zrc="source ~/.zshrc"
+alias brc="source ~/.bashrc"
 alias c='clear'
 alias home='cd ~/ && clear'
 alias h='home'
@@ -28,6 +30,7 @@ alias ws='WS'
 alias OSS='cd ~/OSS'
 alias oss='OSS'
 alias o='open .'
+alias lsal='ls -al'
 
 # mount
 alias mount-dmg='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount' #FILE.dmg
