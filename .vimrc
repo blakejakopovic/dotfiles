@@ -1,25 +1,29 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required for vundle (reenabled down script)
+set nocompatible                " be iMproved, required
+filetype off                    " required for vundle (reenabled down script)
 
-syntax on                     " enable syntax highlighting (previously syntax on).
+syntax on                       " enable syntax highlighting (previously syntax on).
 
-set laststatus=2              " Always display the status line
-set autoindent                " auto-indent
-set tabstop=4                 " tab spacing
-set softtabstop=4             " unify
-set shiftwidth=4              " indent/outdent by 4 columns
-set shiftround                " always indent/outdent to the nearest tabstop
-set expandtab                 " use spaces instead of tabs
-set smarttab                  " use tabs at the start of a line, spaces elsewhere
-set nowrap                    " don't wrap text
-set relativenumber            " show dynamic file line guttering (requires vim 7.4+)
-set number                    " show line numbers
-set formatoptions-=r          " disable auto-commenting on Enter
+set laststatus=2                " Always display the status line
+set autoindent                  " auto-indent
+set tabstop=4                   " tab spacing
+set softtabstop=4               " unify
+set shiftwidth=4                " indent/outdent by 4 columns
+set shiftround                  " always indent/outdent to the nearest tabstop
+set expandtab                   " use spaces instead of tabs
+set smarttab                    " use tabs at the start of a line, spaces elsewhere
+set nowrap                      " don't wrap text
+set relativenumber              " show dynamic file line guttering (requires vim 7.4+)
+set number                      " show line numbers
+set formatoptions-=c            " disable auto-commenting on Enter
+set formatoptions-=r            " disable auto-commenting on Enter
+set formatoptions-=o            " disable auto-commenting on Enter
+set backspace=indent,eol,start  " backspace over anything in insert mode
 
 "
 " VUNDLE BEGIN (plugins below)
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "
+
 set rtp+=~/.vim/bundle/Vundle.vim            " set the runtime path to include Vundle
 call vundle#begin()                          " initialize vundle
 Plugin 'VundleVim/Vundle.vim'                " let Vundle manage Vundle, required
@@ -31,6 +35,11 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive'                  " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plugin 'scrooloose/syntastic'                " Syntastic: syntax checking hacks for vim
 Plugin 'tpope/vim-surround'                  " SURROUND.VIM: quoting/parenthesizing made simple
+
+" cs<a><b> -- switch quotes/braces (eg. cs'")
+" ds<char> -- remove quotes/braces (eg. ds')
+" yss)     -- wrap line with () brackets
+
 Plugin 'kien/ctrlp.vim'                      " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder
 Plugin 'vim-airline/vim-airline'             " vim-airline: Lean & mean status/tabline for vim that's light as air.
 Plugin 'vim-airline/vim-airline-themes'
@@ -96,7 +105,8 @@ command Wq wq
 command Q q
 
 " Allow write to protected files
-cnoremap sudow w !sudo tee % >/dev/null
+" cnoremap sudow w !sudo tee % >/dev/null
+cmap w!! w !sudo tee > /dev/null %
 
 " Configure NERDCommenter spacing
 let NERDSpaceDelims=1
@@ -104,3 +114,15 @@ let NERDSpaceDelims=1
 " Enable touchpad scrolling on iterm2 OS X (requires command below)
 " defaults write com.googlecode.iterm2 AlternateMouseScroll -bool true
 "set mouse=nicr
+
+" Make enter/return create a new line below and enter INSERT mode
+nmap <Enter> o
+
+" Disable auto-commenting on Enter
+autocmd BufNewFile,BufRead * setlocal formatoptions-=c
+autocmd BufNewFile,BufRead * setlocal formatoptions-=r
+autocmd BufNewFile,BufRead * setlocal formatoptions-=o
+
+" Toggle single and double quotes
+nmap " cs'"
+nmap ' cs"'
