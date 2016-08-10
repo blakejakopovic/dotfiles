@@ -36,18 +36,21 @@ alias lsal='ls -al'
 alias mount-dmg='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount' #FILE.dmg
 
 # Files
-alias cpr="cp -R"
-alias find-hard-links="find / -xdev -samefile" #FILE
-alias find-hard-link-id="find / -xdev -inum" #INODE_ID
+alias bashrc='vim ~/.bashrc'
+alias vimrc='vim ~/.vimrc'
+alias zshrc='vim ~/.zshrc'
+alias cpr='cp -R'
+alias find-hard-links='find / -xdev -samefile' #FILE
+alias find-hard-link-id='find / -xdev -inum' #INODE_ID
 
 # Grep
-alias grep="grep --color=auto"
-alias grep-not="grep --color=auto -L"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
-alias igrep="grep -i"
-alias lsgrep="ls -al | grep --color=auto"
-alias catg="fgrep"
+alias grep='grep --color=auto'
+alias grep-not='grep --color=auto -L'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias igrep='grep -i'
+alias lsgrep='ls -al | grep --color=auto'
+alias catg='fgrep'
 
 # Helpers
 alias one-per-line="sed 's/\s/\n/g'"
@@ -90,23 +93,23 @@ ssh-fingerprint () {
 }
 
 # Mount
-alias mountc="mount | column -t"
+alias mountc='mount | column -t'
 
 # Vim
-alias v="vim"
-alias vi="vim"
-alias svim="sudo vim"
+alias v='vim'
+alias vi='vim'
+alias svim='sudo vim'
 
 # Local tunnel (without tty)
-alias ssh-bg="ssh -nNTf"                # Start SSH session in the background (without tty)
-alias ssh-local-tunnel="ssh -nNTf -L"   # 9000:hostB:80 user@host
-alias ssh-remote-tunnel="# ssh -NT -R"  # 9292:localhost:22 user@host
+alias ssh-bg='ssh -nNTf'                # Start SSH session in the background (without tty)
+alias ssh-local-tunnel='ssh -nNTf -L'   # 9000:hostB:80 user@host
+alias ssh-remote-tunnel='ssh -NT -R'  # 9292:localhost:22 user@host
 
 # Socks proxy
-alias ssh-socks="ssh -D" # 12345 user@host
+alias ssh-socks='ssh -D' # 12345 user@host
 
 # Curl
-alias curl-no-cache="curl -H 'Cache-Control: no-cache'"
+alias curl-no-cache='curl -H "Cache-Control: no-cache"'
 
 # IP
 alias ipaddr='curl -s icanhazip.com'
@@ -151,7 +154,7 @@ vid2ipad() { # vid2ipad INPUT
 
 # Youtube
 alias yt='youtube-dl'
-alias youtube2mp3="youtube-dl --extract-audio --audio-format mp3"
+alias youtube2mp3='youtube-dl --extract-audio --audio-format mp3'
 
 # Password gen
 alias genpass='xxd -l 20 -c 20 -p /dev/urandom'
@@ -165,14 +168,14 @@ alias digs='dig +short'
 
 test-dns() {
   if [[ ! `command -v dig` ]]; then
-    echo "Please install dig package"
+    echo 'Please install dig package'
     return
   fi
-  echo -n "google.com "
+  echo -n 'google.com '
   dig +short google.com | head -n1
-  echo -n "facebook.com "
+  echo -n 'facebook.com '
   dig +short facebook.com | head -n1
-  echo -n "reddit.com "
+  echo -n 'reddit.com '
   dig +short reddit.com | head -n1
 }
 
@@ -183,14 +186,14 @@ reverse-dns() {
 # DNS Crypt
 test-dnscrypt() {
   if [[ ! `command -v dig` ]]; then
-    echo "Please install dig"
+    echo 'Please install dig'
     exit -1
   fi
-  echo "google.com"
+  echo 'google.com'
   dig @127.0.0.1 +short google.com | head -n1
-  echo "facebook.com"
+  echo 'facebook.com'
   dig @127.0.0.1 +short facebook.com | head -n1
-  echo "reddit.com"
+  echo 'reddit.com'
   echo \t\ne && dig @127.0.0.1 +short reddit.com | head -n1
 }
 
@@ -212,9 +215,9 @@ detect-captive-portal() {
   if [ $http_status -eq "204" ]; then
     echo "No captive portal"
   elif [ $exit_code -eq "52" ]; then
-    echo "Captive portal detected"
+    echo 'Captive portal detected'
   else
-   echo "Check network connection"
+   echo 'Check network connection'
   fi
 
   ## http://www.apple.com/library/test/success.html
@@ -227,13 +230,13 @@ test-net() {
   status_code_apple=$?
 
   if [[ $status_code_google -eq "0" && $http_status_google -eq "204" ]]; then
-    echo "Google OK!"
+    echo 'Google OK!'
   else
     echo "Google Error :( - $status_code_google"
   fi
 
   if [[ $status_code_apple -eq "0" && $http_status_apple -eq "200" ]]; then
-    echo "Apple OK!"
+    echo 'Apple OK!'
   else
     echo "Apple Error :( - $status_code_apple"
   fi
@@ -263,34 +266,34 @@ rlocate() {
 
 
 # arp
-alias arp-local="arp -an"
+alias arp-local='arp -an'
 
 # ps
-alias psc="ps xawf -eo pid,user,cgroup,args" # ps with cgroups
+alias psc='ps xawf -eo pid,user,cgroup,args' # ps with cgroups
 function psgrep { # with hack to colorise
   ps aux | grep $1 | grep -v grep | grep --color=auto $1
 }
 
 # DS_Store
-alias rm_ds_store="find . -name '*.DS_Store' -type f -delete"
+alias rm-ds-store="find . -name '*.DS_Store' -type f -delete"
 
 # Date
-alias date2="date +%Y-%m-%d"
-alias date3="date +%Y-%m-%d.%H:%M:%S"
+alias date2='date +%Y-%m-%d'
+alias date3='date +%Y-%m-%d.%H:%M:%S'
 
 # Netstat (port scan)
-alias lsport="sudo netstat -nlp"
+alias lsport='sudo netstat -nlp'
 
 # Vim
-alias vim-plugin-install="vim +PluginInstall +qall"
+alias vim-plugin-install='vim +PluginInstall +qall'
 
 # Ding
-alias ding="tput bel"
+alias ding='tput bel'
 alias ding2='/usr/bin/printf "\a"'
 alias ding3='echo -e "\a"'
 
 # Gpg
-alias gpg-detached-sig="gpg -ba" # FILE
+alias gpg-detached-sig='gpg --armor --detach-sign' # FILE
 
 # Dictionary
 function define {
@@ -304,7 +307,7 @@ function zsh-find-alias {
 }
 
 # Colorise cat (require python-pygmentize)
-alias dog="pygmentize -g"
+alias dog='pygmentize -g'
 
 # Man
 # http://unix.stackexchange.com/questions/18087/can-i-get-individual-man-pages-for-the-bash-builtin-commands
@@ -326,4 +329,4 @@ qman() {
 }
 
 # Media
-alias timelapse-jpg2mp4="cat *.jpg | ffmpeg -f image2pipe -r 25 -vcodec mjpeg -i - -vcodec libx264 out2.mp4"
+alias timelapse-jpg2mp4='cat *.jpg | ffmpeg -f image2pipe -r 25 -vcodec mjpeg -i - -vcodec libx264 out2.mp4'

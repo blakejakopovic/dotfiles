@@ -1,18 +1,18 @@
 # ~/.dotfiles/arch/.aliases
 
 if [ $UID -ne 0 ]; then
-  alias bootctl="sudo bootctl"
-  alias netctl="sudo netctl"
-  alias pacman="sudo pacman"
-  alias powertop="sudo powertop"
-  alias systemctl="sudo systemctl"
-  alias wifi-menu="sudo wifi-menu"
+  alias bootctl='sudo bootctl'
+  alias netctl='sudo netctl'
+  alias pacman='sudo pacman'
+  alias powertop='sudo powertop'
+  alias systemctl='sudo systemctl'
+  alias wifi-menu='sudo wifi-menu'
 fi
 
 # Directory
-alias l="ls --color=auto"
-alias ls="ls --color=auto"
-alias ll="ls --color=auto -alhsr"
+alias l='ls --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls --color=auto -alhsr'
 
 # iso
 alias mount-iso='mount -o loop' #DISK.iso FILE
@@ -23,44 +23,44 @@ alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
 # grep
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # lsblk
-alias lspartuuid="lsblk -o NAME,PARTUUID"
+alias lspartuuid='lsblk -o NAME,PARTUUID'
 
 # dkms
 alias dkms-autoinstall-all="dkms autoinstall -k $(uname -r)"
-alias pup="pacman -Syu"
-alias pi="pacman -S"
+alias pup='pacman -Syu'
+alias pi='pacman -S'
 
 # pacman
-alias pacmatic="sudo pacmatic"
+alias pacmatic='sudo pacmatic'
 
-alias pacupg="sudo pacman -Syu"     # Synchronize with repositories and then upgrade packages that are out of date on the local system.
-alias pacdl="pacman -Sw"            # Download specified package(s) as .tar.xz ball
-alias pacin="sudo pacman -S"        # Install specific package(s) from the repositories
-alias pacins="sudo pacman -U"       # Install specific package not from the repositories but from a file
-alias pacre="sudo pacman -R"        # Remove the specified package(s), retaining its configuration(s) and required dependencies
-alias pacrem="sudo pacman -Rns"     # Remove the specified package(s), its configuration(s) and unneeded dependencies
-alias pacrep="pacman -Si"           # Display information about a given package in the repositories
-alias pacreps="pacman -Ss"          # Search for package(s) in the repositories
-alias pacloc="pacman -Qi"           # Display information about a given package in the local database
-alias paclocs="pacman -Qs"          # Search for package(s) in the local database
-alias paclo="pacman -Qdt"           # List all packages which are orphaned
-alias pacc="sudo pacman -Scc"       # Clean cache - delete all the package files in the cache
-alias paclf="pacman -Ql"            # List all files installed by a given package
-alias pacown="pacman -Qo"           # Show package(s) owning the specified file(s)
-alias pacexpl="pacman -D --asexp"   # Mark one or more installed packages as explicitly installed
-alias pacimpl="pacman -D --asdep"   # Mark one or more installed packages as non explicitly installed
+alias pacupg='sudo pacman -Syu'     # Synchronize with repositories and then upgrade packages that are out of date on the local system.
+alias pacdl='pacman -Sw'            # Download specified package(s) as .tar.xz ball
+alias pacin='sudo pacman -S'        # Install specific package(s) from the repositories
+alias pacins='sudo pacman -U'       # Install specific package not from the repositories but from a file
+alias pacre='sudo pacman -R'        # Remove the specified package(s), retaining its configuration(s) and required dependencies
+alias pacrem='sudo pacman -Rns'     # Remove the specified package(s), its configuration(s) and unneeded dependencies
+alias pacrep='pacman -Si'           # Display information about a given package in the repositories
+alias pacreps='pacman -Ss'          # Search for package(s) in the repositories
+alias pacloc='pacman -Qi'           # Display information about a given package in the local database
+alias paclocs='pacman -Qs'          # Search for package(s) in the local database
+alias paclo='pacman -Qdt'           # List all packages which are orphaned
+alias pacc='sudo pacman -Scc'       # Clean cache - delete all the package files in the cache
+alias paclf='pacman -Ql'            # List all files installed by a given package
+alias pacown='pacman -Qo'           # Show package(s) owning the specified file(s)
+alias pacexpl='pacman -D --asexp'   # Mark one or more installed packages as explicitly installed
+alias pacimpl='pacman -D --asdep'   # Mark one or more installed packages as non explicitly installed
 
-alias pacupd="sudo pacman -Sy && sudo abs"         # Update and refresh the local package and ABS databases against repositories
-alias pacinsd="sudo pacman -S --asdeps"            # Install given package(s) as dependencies
-alias pacmir="sudo pacman -Syy"                    # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
+alias pacupd='sudo pacman -Sy && sudo abs'         # Update and refresh the local package and ABS databases against repositories
+alias pacinsd='sudo pacman -S --asdeps'            # Install given package(s) as dependencies
+alias pacmir='sudo pacman -Syy'                    # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
-alias pacunlock="sudo rm /var/lib/pacman/db.lck"   # Delete the lock file /var/lib/pacman/db.lck
-alias paclock="sudo touch /var/lib/pacman/db.lck"  # Create the lock file /var/lib/pacman/db.lck
+alias pacunlock='sudo rm /var/lib/pacman/db.lck'   # Delete the lock file /var/lib/pacman/db.lck
+alias paclock='sudo touch /var/lib/pacman/db.lck'  # Create the lock file /var/lib/pacman/db.lck
 
 # checkupdates      # To find oudated packages
 
@@ -80,8 +80,8 @@ alias expac-listv='expac -s "%-30n %v"' # list with version
 alias expac-detailed='expac -HM "%011m\t%-20n\t%10d" $( comm -23 <(pacman -Qqen|sort) <(pacman -Qqg base base-devel|sort) ) | sort -rn'
 
 # airplane mode
-alias airplane-mode-on="rfkill block 0: phy0"
-alias airplane-mode-off="rfkill unblock 0: phy0"
+alias airplane-mode-on='rfkill block 0: phy0'
+alias airplane-mode-off='rfkill unblock 0: phy0'
 
 # DNSCrypt
 function dnscrypt-enable {

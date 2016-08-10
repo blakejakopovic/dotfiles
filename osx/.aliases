@@ -1,8 +1,8 @@
 # ~/.osx/.aliases
 
 # Directory
-alias l="gls --color=auto"
-alias ll="gls --color=auto -al"
+alias l='gls --color=auto'
+alias ll='gls --color=auto -al'
 
 
 # Use GNU rm and mv commands (with root safety)
@@ -16,8 +16,8 @@ alias chmod='gchmod --preserve-root'
 alias chgrp='gchgrp --preserve-root'
 
 # Finder
-alias indexing-off="sudo mdutil -i off" #PATH
-alias rm-dsstore="find . -name '*.DS_STORE' -type f -delete"
+alias indexing-off='sudo mdutil -i off' #PATH
+alias rm-dsstore='find . -name "*.DS_STORE" -type f -delete'
 
 show-hidden-files() {
   defaults write com.apple.finder AppleShowAllFiles TRUE
@@ -31,13 +31,14 @@ hide-hidden-files() {
 
 # Clipboard
 alias sortuniq-clipboard='pbpaste | sort | uniq | pbcopy'
-alias wc-clipboard='pbpaste | wc -l'
+alias wc-clipboard="pbpaste | wc -l | awk '{print \$1}'"
 
 # Homebrew
 alias bu='brew update'
 alias bup='brew upgrade --all'
+alias bcu='brew cleanup'
 alias bo='brew outdated'
-alias brew-upgrade-head="brew reinstall --HEAD" #FORMULA
+alias brew-upgrade-head='brew reinstall --HEAD' #FORMULA
 
 # DNS
 alias flush-dns='dscacheutil -flushcache'
@@ -87,20 +88,20 @@ spoof-wifi-reset() {
 
 # DNS Crypt
 dnscrypt-wifi-enable() {
-  sudo /bin/bash -c "networksetup -getdnsservers Wi-Fi > /etc/dnscrypt-wifi.restore"
+  sudo /bin/bash -c 'networksetup -getdnsservers Wi-Fi > /etc/dnscrypt-wifi.restore'
   sudo networksetup -setdnsservers Wi-Fi 127.0.0.1
-  echo "New DNS: 127.0.0.1"
+  echo 'New DNS: 127.0.0.1'
 }
 
 dnscrypt-wifi-disable() {
-  restore_servers=$(sudo bash -c "cat /etc/dnscrypt-wifi.restore | xargs")
+  restore_servers=$(sudo bash -c 'cat /etc/dnscrypt-wifi.restore | xargs')
   sudo  networksetup -setdnsservers Wi-Fi $restore_servers
-  echo "New DNS: $restore_servers"
+  echo 'New DNS: $restore_servers'
 }
 
 dnscrypt-wifi-reset() {
   sudo networksetup -setdnsservers Wi-Fi empty
-  echo "DNS servers reset"
+  echo 'DNS servers reset'
 }
 
 # WiFi
