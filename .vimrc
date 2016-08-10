@@ -69,7 +69,7 @@ Plugin 'pangloss/vim-javascript'             " Vastly improved Javascript indent
 Plugin 'othree/html5.vim'                    " HTML5 omniciomplete and syntax
 Plugin 'elzr/vim-json'                       " a better JSON for Vim
 Plugin 'Matt-Deacalion/vim-systemd-syntax'   " Syntax highlighting for systemd
-
+Plugin 'PotatoesMaster/i3-vim-syntax'        " Syntax highlighting for i3/config
 
 "
 " VUNDLE END (plugins above)
