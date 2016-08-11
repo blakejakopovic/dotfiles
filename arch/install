@@ -6,7 +6,8 @@ LINKCMD="ln -is"
 echo "Installing arch dotfiles..."
 
 # Ensure paths
-mkdir -p ~/.i3
+mkdir -p ~/.config/i3
+mkdir -p ~/.config/sway
 mkdir -p ~/.config/termite
 
 # Symlink dotfiles
@@ -18,6 +19,6 @@ ${LINKCMD} ${BASEDIR}/.xinitrc ~/.xinitrc
 ${LINKCMD} ${BASEDIR}/.Xresources ~/.Xresources
 
 # Symlink config files
-${LINKCMD} ${BASEDIR}/i3.conf ~/.i3/config
-${LINKCMD} ${BASEDIR}/sway.conf ~/.sway/config
+${LINKCMD} ${BASEDIR}/i3.conf ~/.config/i3/config
+${LINKCMD} ${BASEDIR}/sway.conf ~/.config/sway/config
 ${LINKCMD} ${BASEDIR}/termite.conf ~/.config/termite/config

@@ -94,5 +94,5 @@ if [ ! -z "$DISPLAY" ]; then # hide in desktop environment
 # elif [ `uname -r | grep "^4"` ]; then # show for linux >=4
   # RPROMPT='$(last_exit_status) $(current_ssid_p)[ $(datetime_p) $(battery_gauge_p) $(battery_remaining)]'
 else
-  RPROMPT='$(last_exit_status) $(current_ssid_p)[ $(datetime_p)]'
+  RPROMPT='$(last_exit_status) $(current_ssid_p)[ $(datetime_p) ]'
 fi
