@@ -7,4 +7,3 @@ echo "Installing osx dotfiles..."
 
 # Symlink dotfiles
 ${LINKCMD} ${BASEDIR}/.gitconfig ~/.gitconfig
-${LINKCMD} ${BASEDIR}/.gitignore_global ~/.gitignore_global

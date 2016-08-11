@@ -12,7 +12,6 @@ mkdir -p ~/.config/termite
 # Symlink dotfiles
 ${LINKCMD} ${BASEDIR}/.compton.conf ~/
 ${LINKCMD} ${BASEDIR}/.gitconfig ~/.gitconfig
-${LINKCMD} ${BASEDIR}/.gitignore_global ~/.gitignore_global
 ${LINKCMD} ${BASEDIR}/.i3status.conf ~/
 ${LINKCMD} ${BASEDIR}/.xbindkeysrc ~/.xbindkeysrc
 ${LINKCMD} ${BASEDIR}/.xinitrc ~/.xinitrc

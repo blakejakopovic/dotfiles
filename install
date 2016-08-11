@@ -17,6 +17,7 @@ ${LINKCMD} ${BASEDIR}/.bashrc ~/.bashrc
 ${LINKCMD} ${BASEDIR}/.bash_profile ~/.bash_profile
 ${LINKCMD} ${BASEDIR}/.curlrc ~/.curlrc
 ${LINKCMD} ${BASEDIR}/.gemrc ~/.gemrc
+${LINKCMD} ${BASEDIR}/.gitignore_global ~/.gitignore_global
 ${LINKCMD} ${BASEDIR}/.hushlogin ~/.hushlogin
 ${LINKCMD} ${BASEDIR}/.nanorc ~/.nanorc
 ${LINKCMD} ${BASEDIR}/.screenrc ~/.screenrc
