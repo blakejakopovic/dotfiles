@@ -12,7 +12,7 @@ done;
 unset file
 
 # Load zsh shell dotfiles
-for file in $DOTFILESPATH/.{zsh_path,exports,zsh_exports,zsh_completion,aliases,zsh_aliases,zsh_extras,zsh_prompt,zsh_extensions};
+for file in $DOTFILESPATH/.{zsh_path,exports,zsh_exports,zsh_completion,aliases,zsh_aliases,zsh_extras,zsh_extensions,zsh_prompt};
 do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
@@ -26,7 +26,7 @@ elif [[ -f "/etc/arch-release" ]]; then
 fi
 
 if [ $OS_DOTFILES ]; then
-  for file in $DOTFILESPATH/$OS_DOTFILES/.{zsh_path,zsh_completion,exports,zsh_exports,aliases,zsh_aliases,zsh_extras,zsh_prompt,zsh_extensions,private}; 
+  for file in $DOTFILESPATH/$OS_DOTFILES/.{zsh_path,zsh_completion,exports,zsh_exports,aliases,zsh_aliases,zsh_extras,zsh_extensions,zsh_prompt,private};
   do
       [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;

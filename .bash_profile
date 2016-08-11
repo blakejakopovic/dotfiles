@@ -12,7 +12,7 @@ done;
 unset file
 
 # Load bash shell dotfiles
-for file in $DOTFILESPATH/.{bash_path,exports,bash_exports,bash_completion,aliases,bash_aliases,bash_extras,bash_prompt,bash_extensions}; do
+for file in $DOTFILESPATH/.{bash_path,exports,bash_exports,bash_completion,aliases,bash_aliases,bash_extras,bash_extensions,bash_prompt}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file
@@ -25,7 +25,7 @@ elif [[ -f "/etc/arch-release" ]]; then
 fi
 
 if [ $OS_DOTFILES ]; then
-  for file in $DOTFILESPATH/$OS_DOTFILES/.{bash_path,exports,bash_exports,bash_completion,aliases,bash_aliases,bash_extras,bash_prompt,bash_extensions,private}; do
+  for file in $DOTFILESPATH/$OS_DOTFILES/.{bash_path,exports,bash_exports,bash_completion,aliases,bash_aliases,bash_extras,bash_extensions,bash_prompt,private}; do
       [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
   unset file
