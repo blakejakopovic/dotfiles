@@ -4,6 +4,8 @@
 alias l='gls --color=auto'
 alias ll='gls --color=auto -al'
 
+# mount
+alias mount-dmg='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount' #FILE.dmg
 
 # Use GNU rm and mv commands (with root safety)
 alias rm='grm --preserve-root -v -i'

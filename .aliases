@@ -32,9 +32,6 @@ alias oss='OSS'
 alias o='open .'
 alias lsal='ls -al'
 
-# mount
-alias mount-dmg='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount' #FILE.dmg
-
 # Files
 alias bashrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
