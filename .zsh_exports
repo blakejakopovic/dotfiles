@@ -6,7 +6,7 @@ compinit
 promptinit
 
 # Enable prompt subsitution
-setopt PROMPT_SUBST
+setopt prompt_subst
 
 # Enable history
 SAVEHIST=10000
