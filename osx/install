@@ -4,6 +4,3 @@ BASEDIR="$HOME/.dotfiles/osx"
 LINKCMD="ln -is"
 
 echo "Installing osx dotfiles..."
-
-# Symlink dotfiles
-${LINKCMD} ${BASEDIR}/.gitconfig ~/.gitconfig

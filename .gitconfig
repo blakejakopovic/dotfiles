@@ -7,14 +7,12 @@
 	s = status
 	ls = ls-files
 	c = commit
-	cm = commit -m
+	cm = commit --message
 	ch = checkout
-	rs = rebase --squash -i
+	rs = rebase --squash --interactive
 	ms = merge --squash
 	smu = submodule update --init --recursive
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	restore = !git checkout $(git rev-list -n 1 HEAD -- \"$1\")^ -- \"$1\"
-	aa = add --all --intent-to-add
 	ap = add --patch
 	update-timestamp = commit --amend --reset-author
 [color]
@@ -23,7 +21,7 @@
 	interactive = auto
 	status = auto
 [push]
-    default = current
+    default = simple
 [branch]
 	autosetuprebase = always
 [advice]
