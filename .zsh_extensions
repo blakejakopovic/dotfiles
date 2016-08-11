@@ -7,6 +7,14 @@ elif [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlightin
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# zsh-history-substring-search -- https://github.com/zsh-users/zsh-history-substring-search
+# requires zsh-syntax-highlighting to be loaded first
+if [[ -f ~/.dotfiles/extensions/zsh-history-substring-search.zsh ]]; then
+  source ~/.dotfiles/extensions/zsh-history-substring-search.zsh
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+fi
+
 # Base16 Shell -- https://github.com/chriskempson/base16-shell.git
 if [[ -f $HOME/.config/base16-shell/scripts/base16-phd.sh ]]; then
   BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-phd.sh"
