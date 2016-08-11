@@ -2,6 +2,7 @@
 
 # Directory
 alias l='gls --color=auto'
+alias ls='gls --color=auto'
 alias ll='gls --color=auto -al'
 
 # mount
