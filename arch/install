@@ -20,4 +20,5 @@ ${LINKCMD} ${BASEDIR}/.Xresources ~/.Xresources
 
 # Symlink config files
 ${LINKCMD} ${BASEDIR}/i3.conf ~/.i3/config
+${LINKCMD} ${BASEDIR}/sway.conf ~/.sway/config
 ${LINKCMD} ${BASEDIR}/termite.conf ~/.config/termite/config
