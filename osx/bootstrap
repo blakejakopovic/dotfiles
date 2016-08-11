@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Ask for the administrator password upfront.
+sudo -v
+
+if [[ ! -f "/usr/bin/xcode-select" ]]; then
+  xcode-select --install
+fi
