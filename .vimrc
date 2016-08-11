@@ -1,6 +1,4 @@
 set nocompatible                " be iMproved, required
-filetype off                    " required for vundle (reenabled down script)
-
 syntax on                       " enable syntax highlighting (previously syntax on).
 
 set laststatus=2                " Always display the status line
@@ -19,68 +17,65 @@ set formatoptions-=r            " disable auto-commenting on Enter
 set formatoptions-=o            " disable auto-commenting on Enter
 set backspace=indent,eol,start  " backspace over anything in insert mode
 
-"
-" VUNDLE BEGIN (plugins below)
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
+" https://github.com/junegunn/vim-plug
+if !filereadable(expand('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-set rtp+=~/.vim/bundle/Vundle.vim            " set the runtime path to include Vundle
-call vundle#begin()                          " initialize vundle
-Plugin 'VundleVim/Vundle.vim'                " let Vundle manage Vundle, required
+call plug#begin('~/.vim/plugged')
 
 " The NERD TREE: A tree explorer plugin for vim.
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
-Plugin 'tpope/vim-fugitive'                  " fugitive.vim: a Git wrapper so awesome, it should be illegal
-Plugin 'scrooloose/syntastic'                " Syntastic: syntax checking hacks for vim
-Plugin 'tpope/vim-surround'                  " SURROUND.VIM: quoting/parenthesizing made simple
+Plug 'tpope/vim-fugitive'                  " fugitive.vim: a Git wrapper so awesome, it should be illegal
+Plug 'scrooloose/syntastic'                " Syntastic: syntax checking hacks for vim
+Plug 'tpope/vim-surround'                  " SURROUND.VIM: quoting/parenthesizing made simple
 
 " cs<a><b> -- switch quotes/braces (eg. cs'")
 " ds<char> -- remove quotes/braces (eg. ds')
 " yss)     -- wrap line with () brackets
 
-Plugin 'kien/ctrlp.vim'                      " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder
-Plugin 'vim-airline/vim-airline'             " vim-airline: Lean & mean status/tabline for vim that's light as air.
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter'              " Git diff in the 'gutter'
-Plugin 'godlygeek/tabular'                   " Vim script for text filtering and alignment
-Plugin 'kien/rainbow_parentheses.vim'        " Better Rainbow Parentheses
-Plugin 'honza/vim-snippets'                  " vim-snipmate default snippets vim-snipmate default snippets
+Plug 'kien/ctrlp.vim'                      " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder
+Plug 'vim-airline/vim-airline'             " vim-airline: Lean & mean status/tabline for vim that's light as air.
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'              " Git diff in the 'gutter'
+Plug 'godlygeek/tabular'                   " Vim script for text filtering and alignment
+Plug 'kien/rainbow_parentheses.vim'        " Better Rainbow Parentheses
+Plug 'honza/vim-snippets'                  " vim-snipmate default snippets vim-snipmate default snippets
 
-Plugin 'scrooloose/nerdcommenter'            "The NERD Commenter: Vim plugin for intensely orgasmic commenting
+Plug 'scrooloose/nerdcommenter'            "The NERD Commenter: Vim plugin for intensely orgasmic commenting
 " \cn -- comment line
 " \cc -- comment paragraph
 " \cu -- uncomment
 
-Plugin 'easymotion/vim-easymotion'           " Vim motions on speed!
+Plug 'easymotion/vim-easymotion'           " Vim motions on speed!
 " \\w
 " \\f
 
 " Theming
-Plugin 'chriskempson/base16-vim'             " Base16 vim theme
+Plug 'chriskempson/base16-vim'             " Base16 vim theme
 
 " Syntax
-Plugin 'rodjek/vim-puppet'                   " Puppet niceities for your Vim setup
-Plugin 'chase/vim-ansible-yaml'              " Add additional support for Ansible in Vim
-Plugin 'tpope/vim-rails'                     " rails.vim: Ruby on Rails power tools
-Plugin 'vim-ruby/vim-ruby'                   " Vim/Ruby Configuration Files
-Plugin 'pangloss/vim-javascript'             " Vastly improved Javascript indentation and syntax support in vim
-Plugin 'othree/html5.vim'                    " HTML5 omniciomplete and syntax
-Plugin 'elzr/vim-json'                       " a better JSON for Vim
-Plugin 'Matt-Deacalion/vim-systemd-syntax'   " Syntax highlighting for systemd
-Plugin 'PotatoesMaster/i3-vim-syntax'        " Syntax highlighting for i3/config
+Plug 'rodjek/vim-puppet'                   " Puppet niceities for your Vim setup
+Plug 'chase/vim-ansible-yaml'              " Add additional support for Ansible in Vim
+Plug 'tpope/vim-rails'                     " rails.vim: Ruby on Rails power tools
+Plug 'vim-ruby/vim-ruby'                   " Vim/Ruby Configuration Files
+Plug 'pangloss/vim-javascript'             " Vastly improved Javascript indentation and syntax support in vim
+Plug 'othree/html5.vim'                    " HTML5 omniciomplete and syntax
+Plug 'elzr/vim-json'                       " a better JSON for Vim
+Plug 'Matt-Deacalion/vim-systemd-syntax'   " Syntax highlighting for systemd
+Plug 'PotatoesMaster/i3-vim-syntax'        " Syntax highlighting for i3/config
 
-"
-" VUNDLE END (plugins above)
-"
-call vundle#end()            " required
-filetype plugin indent on    " filetype detection[ON] plugin[ON] indent[ON]
-
+call plug#end()
 
 " Theming config
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-phd
+if filereadable(expand('~/.vim/plugged/base16-vim/colors/base16-phd.vim'))
+  colorscheme base16-phd
+endif
 hi CursorLineNR cterm=bold ctermfg=red    " Set current line number to bold and red
 
 " Remove trailing while space just before save (all files)
@@ -99,10 +94,10 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Helper commands
-command W w
-command WQ wq
-command Wq wq
-command Q q
+cmap W w
+cmap WQ wq
+cmap Wq wq
+cmap Q q
 
 " Allow write to protected files
 " cnoremap sudow w !sudo tee % >/dev/null
