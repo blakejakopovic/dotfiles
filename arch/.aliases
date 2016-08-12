@@ -59,6 +59,8 @@ alias pacupd='sudo pacman -Sy && sudo abs'         # Update and refresh the loca
 alias pacinsd='sudo pacman -S --asdeps'            # Install given package(s) as dependencies
 alias pacmir='sudo pacman -Syy'                    # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
+alias pacman-remove-all-except-base='pacman -R $(comm -23 <(pacman -Qq | sort) <((for i in $(pacman -Qqg base); do pactree -ul "$i"; done) | sort -u))'
+
 alias pacunlock='sudo rm /var/lib/pacman/db.lck'   # Delete the lock file /var/lib/pacman/db.lck
 alias paclock='sudo touch /var/lib/pacman/db.lck'  # Create the lock file /var/lib/pacman/db.lck
 
