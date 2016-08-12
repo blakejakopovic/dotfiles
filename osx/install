@@ -1,6 +1,6 @@
-#!/bin/bash
-
-BASEDIR="$HOME/.dotfiles/osx"
-LINKCMD="ln -is"
-
-echo "Installing osx dotfiles..."
+#!/usr/bin/env bash
+#
+# ~/.dotfiles/osx/install
+# dotfiles -- Personal dot file repo
+# Author: Blake Jakopovic
+# Git:    https://github.com/blakejakopovic/dotfiles

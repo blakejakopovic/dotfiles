@@ -1,39 +1,91 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
-#
+# ~/.dotfiles/install
 # dotfiles -- Personal dot file repo
 # Author: Blake Jakopovic
 # Git:    https://github.com/blakejakopovic/dotfiles
-#
 
-BASEDIR="$HOME/.dotfiles"
-EXTDIR="${BASEDIR}/extensions"
-LINKCMD="ln -is"
+echo ".dotfiles Installer - vALPHA"
 
-echo "Installing global dotfiles..."
+# Global variables
+DEBUG=1
+HOME_DIR="${HOME}"
+DOTFILES_DIR="${HOME}/.dotfiles"
+LINK_CMD='ln -si'
+DIR_CMD='mkdir -p'
+PADDING='     '
 
-# Symlink dotfiles
-${LINKCMD} ${BASEDIR}/.bashrc ~/.bashrc
-${LINKCMD} ${BASEDIR}/.bash_profile ~/.bash_profile
-${LINKCMD} ${BASEDIR}/.curlrc ~/.curlrc
-${LINKCMD} ${BASEDIR}/.gemrc ~/.gemrc
-${LINKCMD} ${BASEDIR}/.gitconfig ~/.gitconfig
-${LINKCMD} ${BASEDIR}/.gitignore_global ~/.gitignore_global
-${LINKCMD} ${BASEDIR}/.hushlogin ~/.hushlogin
-${LINKCMD} ${BASEDIR}/.nanorc ~/.nanorc
-${LINKCMD} ${BASEDIR}/.screenrc ~/.screenrc
-${LINKCMD} ${BASEDIR}/.tmuxrc ~/.tmuxrc
-${LINKCMD} ${BASEDIR}/.vimrc ~/.vimrc
-${LINKCMD} ${BASEDIR}/.wgetrc ~/.wgetrc
-${LINKCMD} ${BASEDIR}/.zshrc ~/.zshrc
+# Create arrays
+declare -a directories
+declare -A symlinks
 
-# Install OS specific dotfiles
+# Register directory to be created
+# NB. Directories are always created before files
+#     Path is relative to HOME_DIR (~/)
+# Usage:
+#   r_directory <dir>
+# Example:
+#   r_directory my/path
+r_dir() {
+  directories+=("$1")
+}
+
+# Register symlink with to and from values
+# If second argument is missing, it will mirror the first
+# NB. src path is relative to DOTFILES_DIR (~/.dotfiles)
+#     dest path is relative to HOME_DIR (~/)
+# Usage:
+#   r_symlink <src> <dest>
+# Examples:
+#   r_symlink .my_dotfile
+#   r_symlink .my_dotfile2 path/.my_dotfile2
+r_symlink() {
+  src=$1; dest=$2
+  [ -z "$dest" ] && dest="$src"
+  symlinks+=(["$src"]="$dest")
+}
+
+# Symlink shared dotfiles
+r_symlink .bashrc
+r_symlink .bash_profile
+r_symlink .curlrc
+r_symlink .gemrc
+r_symlink .gitconfig
+r_symlink .gitignore_global
+r_symlink .hushlogin
+r_symlink .nanorc
+r_symlink .screenrc
+r_symlink .tmuxrc
+r_symlink .vimrc
+r_symlink .wgetrc
+r_symlink .zshrc
+
+# Install operating system specific dotfiles
 if [[ `uname -s` == "Darwin" ]]; then
-  sh ${BASEDIR}/osx/install
+  sh ${DOTFILES_DIR}/osx/install
 elif [[ -f "/etc/arch-release" ]]; then
-  sh ${BASEDIR}/arch/install
-# elif [[ -f "/etc/debian_version" ]]; then
-#   ~/.dotfiles/debian/install
+  sh ${DOTFILES_DIR}/arch/install
 fi
 
-echo "Done :)"
+# Create all directories
+if [[ ${#directories[@]} -gt 0 ]]; then
+  echo "==> Creating directories..."
+  for dir in ${directories[@]}; do
+    echo "${PADDING}${HOME_DIR}/${dir}"
+    eval "${DIR_CMD} '${HOME_DIR}/${dir}'"
+  done
+fi
+
+# Create all symlinks
+if [[ ${#symlinks[@]} -gt 0 ]]; then
+  echo "==> Creating symlinks..."
+  for link in ${!symlinks[@]}; do
+    echo "${PADDING}${HOME_DIR}/${symlinks["$link"]} -> ${DOTFILES_DIR}/${link}"
+    eval "${LINK_CMD} '${DOTFILES_DIR}/${link}' '${HOME_DIR}/${symlinks["$link"]}'"
+  done
+fi
+
+# Fin
+echo "Fin :)"
+exit 0

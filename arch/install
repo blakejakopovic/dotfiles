@@ -1,23 +1,23 @@
-#!/bin/bash
-
-BASEDIR="$HOME/.dotfiles/arch"
-LINKCMD="ln -is"
-
-echo "Installing arch dotfiles..."
+#!/usr/bin/env bash
+#
+# ~/.dotfiles/arch/install
+# dotfiles -- Personal dot file repo
+# Author: Blake Jakopovic
+# Git:    https://github.com/blakejakopovic/dotfiles
 
 # Ensure paths
-mkdir -p ~/.config/i3
-mkdir -p ~/.config/sway
-mkdir -p ~/.config/termite
-
-# Symlink dotfiles
-${LINKCMD} ${BASEDIR}/.compton.conf ~/
-${LINKCMD} ${BASEDIR}/.i3status.conf ~/
-${LINKCMD} ${BASEDIR}/.xbindkeysrc ~/.xbindkeysrc
-${LINKCMD} ${BASEDIR}/.xinitrc ~/.xinitrc
-${LINKCMD} ${BASEDIR}/.Xresources ~/.Xresources
+r_dir .config/i3
+r_dir .config/sway
+r_dir .config/termite
 
 # Symlink config files
-${LINKCMD} ${BASEDIR}/i3.conf ~/.config/i3/config
-${LINKCMD} ${BASEDIR}/sway.conf ~/.config/sway/config
-${LINKCMD} ${BASEDIR}/termite.conf ~/.config/termite/config
+r_symlink i3.conf .config/i3/config
+r_symlink sway.conf .config/sway/config
+r_symlink termite.conf .config/termite/config
+
+# Symlink dotfiles
+r_symlink .compton.conf
+r_symlink .i3status.conf
+r_symlink .xbindkeysrc
+r_symlink .xinitrc
+r_symlink .Xresources
