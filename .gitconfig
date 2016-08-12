@@ -20,6 +20,7 @@
 	diff = auto
 	interactive = auto
 	status = auto
+	ui = true
 [push]
     default = simple
 [branch]
