@@ -1,34 +1,19 @@
 # ~/.dotfiles/.zshrc
 
 # Add user bin folder to PATH
-PATH=$HOME/bin:$PATH
-DOTFILESPATH=$HOME/.dotfiles
-
-# Load generic shell dotfiles
-for file in $DOTFILESPATH/.{path,exports,completion,aliases,extras,prompt,extensions,private};
-do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file
-
-# Load zsh shell dotfiles
-for file in $DOTFILESPATH/.{zsh_path,exports,zsh_exports,zsh_completion,aliases,zsh_aliases,zsh_extras,zsh_extensions,zsh_prompt};
-do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file
+PATH="${HOME}/bin:${PATH}"
+DOTFILESPATH="${HOME}/.dotfiles"
 
 # Load OS specific dotfiles
-if [[ `uname -s` == "Darwin" ]]; then
-  OS_DOTFILES="osx"
-elif [[ `uname -s` == "Linux" ]]; then
-  OS_DOTFILES="linux"
-fi
+declare -a os_dotfiles=("${DOTFILESPATH}")
+[[ `uname -s` == "Darwin" ]] && os_dotfiles+=("${DOTFILESPATH}/osx")
+[[ `uname -s` == "Linux"  ]] && os_dotfiles+=("${DOTFILESPATH}/linux")
+[[ -f "/etc/arch-release" ]] && os_dotfiles+=("${DOTFILESPATH}/arch")
 
-if [ $OS_DOTFILES ]; then
-  for file in $DOTFILESPATH/$OS_DOTFILES/.{zsh_path,zsh_completion,exports,zsh_exports,aliases,zsh_aliases,zsh_extras,zsh_extensions,zsh_prompt,private};
+for base_path in ${os_dotfiles[@]}; do
+  for file in ${base_path}/.{path,zsh_path,exports,zsh_exports,completion,zsh_completion,aliases,zsh_aliases,extras,zsh_extras,extensions,zsh_extensions,prompt,zsh_prompt,private};
   do
-      [ -r "$file" ] && [ -f "$file" ] && source "$file";
+      [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
   done;
   unset file
-fi
+done

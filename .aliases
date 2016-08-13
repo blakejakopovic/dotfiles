@@ -56,7 +56,7 @@ alias d='git diff'
 alias s='git status'
 alias gm='git checkout master'
 alias ga='git add'
-alias gaa='git add -all'
+alias gaa='git add --all'
 alias gap='git add --patch'
 alias gcm='git commit --message'
 alias gfu='git commit --amend --no-edit'
@@ -171,7 +171,7 @@ alias eh="sudo $EDITOR /etc/hosts"
 alias digs='dig +short'
 
 test-dns() {
-  if [[ ! `command -v dig` ]]; then
+  if ! which dig; then
     echo 'Please install dig package'
     return
   fi
@@ -189,7 +189,7 @@ reverse-dns() {
 
 # DNS Crypt
 test-dnscrypt() {
-  if [[ ! `command -v dig` ]]; then
+  if ! which dig; then
     echo 'Please install dig'
     exit -1
   fi
