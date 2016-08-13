@@ -1,24 +1,8 @@
 # ~/.dotfiles/bash_prompt
 
-## Set the default PS1
-## blakejakopovic@BMBP ~/OSS/bitcoin $
-PS1="[bash] \[\e[0;37m\]\u@\h \w \[\e[01;37m\]\\$\[\e[0;37m\] "
+# Load git prompt extension
+source ~/.dotfiles/extensions/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
 
-# Enable GIT current branch info
-if [[ `uname -s` == "Darwin" ]]; then
-  git_completion="/usr/local/etc/bash_completion.d/git-prompt.sh"
-elif [[ `uname -s` == "Linux"  ]]; then
-  git_completion="/etc/bash_completion.d/git"
-elif [[ -f "/etc/arch-release" ]]; then
-  git_completion="/usr/share/bash-completion/completions/git"
-fi
-
-if [ -f "${git_completion}" ]; then
-    source "${git_completion}"
-    export GIT_PS1_SHOWDIRTYSTATE=1
-
-    ## blakejakopovic@BMBP ~/OSS/bitcoin (master *) $
-    PS1="[bash] \[\e[0;37m\]\u@\h \w\[\e[0;32m\]\$(__git_ps1)\e\[m \[\e[01;37m\]\\$\[\e[0;37m\] "
-fi
-
-# export PS1
+## blakejakopovic@BMBP ~/OSS/bitcoin (master *) $
+PS1="[bash] \[\e[0;37m\]\u@\h \w\[\e[0;32m\]\$(__git_ps1)\e\[m \[\e[01;37m\]\\$\[\e[0;37m\] "
