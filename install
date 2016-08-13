@@ -48,6 +48,12 @@ export -f r_symlink
 
 echo "==> Installing shared dotfiles..."
 
+# Ensure required paths
+r_dir .config/mpv
+
+# Symlink config files
+r_symlink .config/mpv/mpv.conf mpv.conf
+
 # Symlink shared dotfiles
 r_symlink .bashrc
 r_symlink .bash_profile

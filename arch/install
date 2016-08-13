@@ -9,7 +9,7 @@ DOTFILES_DIR="${DOTFILES_DIR}/arch"
 
 echo "==> Installing arch dotfiles..."
 
-# Ensure paths
+# Ensure required paths
 r_dir .config/i3
 r_dir .config/sway
 r_dir .config/termite
