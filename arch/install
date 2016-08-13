@@ -5,15 +5,19 @@
 # Author: Blake Jakopovic
 # Git:    https://github.com/blakejakopovic/dotfiles
 
+DOTFILES_DIR="${DOTFILES_DIR}/arch"
+
+echo "==> Installing arch dotfiles..."
+
 # Ensure paths
 r_dir .config/i3
 r_dir .config/sway
 r_dir .config/termite
 
 # Symlink config files
-r_symlink i3.conf .config/i3/config
-r_symlink sway.conf .config/sway/config
-r_symlink termite.conf .config/termite/config
+r_symlink .config/i3/config i3.conf
+r_symlink .config/sway/config sway.conf
+r_symlink .config/termite/config termite.conf
 
 # Symlink dotfiles
 r_symlink .compton.conf

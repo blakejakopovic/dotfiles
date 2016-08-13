@@ -4,3 +4,9 @@
 # dotfiles -- Personal dot file repo
 # Author: Blake Jakopovic
 # Git:    https://github.com/blakejakopovic/dotfiles
+
+DOTFILES_DIR="${DOTFILES_DIR}/osx"
+
+echo "==> Installing osx dotfiles..."
+
+echo "${PADDING}[none]"

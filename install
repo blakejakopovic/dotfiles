@@ -9,42 +9,44 @@ set -e
 echo ".dotfiles Installer - vALPHA"
 
 # Global variables
-DEBUG=1
-HOME_DIR="${HOME}"
-DOTFILES_DIR="${HOME}/.dotfiles"
-LINK_CMD='ln -si'
-DIR_CMD='mkdir -p'
-PADDING='     '
-
-# Create arrays
-declare -a directories
-declare -A symlinks
+export HOME_DIR="${HOME}"
+export DOTFILES_DIR="${HOME}/.dotfiles"
+export LINK_CMD='ln -sf'
+export DIR_CMD='mkdir -p'
+export PADDING='     '
 
 # Register directory to be created
-# NB. Directories are always created before files
-#     Path is relative to HOME_DIR (~/)
+# NB. Path is relative to HOME_DIR (~/)
 # Usage:
 #   r_directory <dir>
 # Example:
 #   r_directory my/path
 r_dir() {
-  directories+=("$1")
+  dir=$1
+  echo "${PADDING}d  ${dir}"
+  eval "${DIR_CMD} '${HOME_DIR}/${dir}'"
 }
+export -f r_dir
 
 # Register symlink with to and from values
 # If second argument is missing, it will mirror the first
-# NB. src path is relative to DOTFILES_DIR (~/.dotfiles)
-#     dest path is relative to HOME_DIR (~/)
+# NB. dst path is relative to HOME_DIR (~/)
+#     src path is relative to DOTFILES_DIR (~/.dotfiles)
 # Usage:
-#   r_symlink <src> <dest>
+#   r_symlink <src>
+#   r_symlink <dst> <src>
 # Examples:
-#   r_symlink .my_dotfile
-#   r_symlink .my_dotfile2 path/.my_dotfile2
-r_symlink() {
-  src=$1; dest=$2
-  [ -z "$dest" ] && dest="$src"
-  symlinks+=(["$src"]="$dest")
+#   r_symlink .custom
+#   r_symlink .custom osx/custom.conf
+function r_symlink() {
+  dst=$1; src=$2
+  [ -z "$src" ] && src="$dst"
+  echo "${PADDING}l  ~/${dst} -> ${DOTFILES_DIR}/${src}"
+  eval "${LINK_CMD} '${DOTFILES_DIR}/${src}' '${HOME_DIR}/${dst}'"
 }
+export -f r_symlink
+
+echo "==> Installing shared dotfiles..."
 
 # Symlink shared dotfiles
 r_symlink .bashrc
@@ -66,24 +68,6 @@ if [[ `uname -s` == "Darwin" ]]; then
   sh ${DOTFILES_DIR}/osx/install
 elif [[ -f "/etc/arch-release" ]]; then
   sh ${DOTFILES_DIR}/arch/install
-fi
-
-# Create all directories
-if [[ ${#directories[@]} -gt 0 ]]; then
-  echo "==> Creating directories..."
-  for dir in ${directories[@]}; do
-    echo "${PADDING}${HOME_DIR}/${dir}"
-    eval "${DIR_CMD} '${HOME_DIR}/${dir}'"
-  done
-fi
-
-# Create all symlinks
-if [[ ${#symlinks[@]} -gt 0 ]]; then
-  echo "==> Creating symlinks..."
-  for link in ${!symlinks[@]}; do
-    echo "${PADDING}${HOME_DIR}/${symlinks["$link"]} -> ${DOTFILES_DIR}/${link}"
-    eval "${LINK_CMD} '${DOTFILES_DIR}/${link}' '${HOME_DIR}/${symlinks["$link"]}'"
-  done
 fi
 
 # Fin
