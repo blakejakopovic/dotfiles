@@ -1,4 +1,6 @@
-# xbacklight and kbdlight (AUR) needed 
+# ~/.dotfiles/linux/.xbindkeysrc
+
+# requires: xbacklight and kbdlight (AUR)
 
 "amixer set Master playback 5%+" XF86AudioRaiseVolume 
 "amixer set Master playback 5%-" XF86AudioLowerVolume 

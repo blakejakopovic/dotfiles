@@ -72,8 +72,8 @@ r_symlink .zshrc
 # Install operating system specific dotfiles
 if [[ `uname -s` == "Darwin" ]]; then
   sh ${DOTFILES_DIR}/osx/install
-elif [[ -f "/etc/arch-release" ]]; then
-  sh ${DOTFILES_DIR}/arch/install
+elif [[ `uname -s` == "Linux" ]]; then
+  sh ${DOTFILES_DIR}/linux/install
 fi
 
 # Fin

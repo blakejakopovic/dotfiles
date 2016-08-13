@@ -1,4 +1,4 @@
-# ~/.dotfiles/arch/.zsh_exports
+# ~/.dotfiles/linux/.zsh_exports
 
 # Automatic logout (seconds)
 #TMOUT=$(( 60 * 3 ))

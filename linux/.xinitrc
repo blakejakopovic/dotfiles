@@ -1,3 +1,5 @@
+# ~/.dotfiles/linux/.xinitrc
+
 xrdb -merge ~/.Xresources
 
 # Retina Display

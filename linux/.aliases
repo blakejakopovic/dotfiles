@@ -1,4 +1,4 @@
-# ~/.dotfiles/arch/.aliases
+# ~/.dotfiles/linux/.aliases
 
 if [ $UID -ne 0 ]; then
   alias bootctl='sudo bootctl'

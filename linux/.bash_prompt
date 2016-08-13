@@ -1,4 +1,4 @@
-# ~/.dotfiles/arch/.bash_prompt
+# ~/.dotfiles/linux/.bash_prompt
 
 # Left Prompt
 function liveroot {

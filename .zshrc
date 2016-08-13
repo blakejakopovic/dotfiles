@@ -21,8 +21,8 @@ unset file
 # Load OS specific dotfiles
 if [[ `uname -s` == "Darwin" ]]; then
   OS_DOTFILES="osx"
-elif [[ -f "/etc/arch-release" ]]; then
-  OS_DOTFILES="arch"
+elif [[ `uname -s` == "Linux" ]]; then
+  OS_DOTFILES="linux"
 fi
 
 if [ $OS_DOTFILES ]; then
