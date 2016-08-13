@@ -51,6 +51,7 @@ alias catg='fgrep'
 
 # Git
 alias g='git'
+alias gl='git l'
 alias d='git diff'
 alias s='git status'
 alias gm='git checkout master'
