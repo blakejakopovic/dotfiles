@@ -11,9 +11,20 @@ echo ".dotfiles Installer - vALPHA"
 # Global variables
 export HOME_DIR="${HOME}"
 export DOTFILES_DIR="${HOME}/.dotfiles"
-export LINK_CMD='ln -sf'
 export DIR_CMD='mkdir -p'
+export LINK_CMD='ln -si'
 export PADDING='     '
+
+# Parse arguments
+for i in "$@"
+do
+case $i in
+    -f|--force)
+    # Enable force creation of symlinks (destructive)
+    export LINK_CMD='ln -sf'
+    ;;
+esac
+done
 
 # Register directory to be created
 # NB. Path is relative to HOME_DIR (~/)
