@@ -5,6 +5,8 @@
 # Author: Blake Jakopovic
 # Git:    https://github.com/blakejakopovic/dotfiles
 
+[ -z "$DOTFILES_DIR" ] && { echo "Error: ${0} cannot be called directly"; exit 1; }
+
 DOTFILES_DIR="${DOTFILES_DIR}/arch"
 
 echo "==> Installing arch dotfiles..."
