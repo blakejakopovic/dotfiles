@@ -248,7 +248,7 @@ defaults write com.apple.finder ShowStatusBar -bool false
 # Finder: hide path bar
 defaults write com.apple.finder ShowPathbar -bool false
 
-# Finder: allow text selection in Quick Look
+# Finder: allow text selection in Quick Look (10.10 and below)
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
 # Hide full POSIX path as Finder window title
@@ -737,6 +737,21 @@ defaults write org.m0k.transmission WarningLegal -bool false
 # Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
 defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
+
+###############################################################################
+# QLColorCode 
+###############################################################################
+
+# Set qlcolorcode encoding 
+defaults write org.n8gray.QLColorCode textEncoding UTF-16
+defaults write org.n8gray.QLColorCode webkitTextEncoding UTF-16
+
+# Set qlcolorcode theme
+# http://www.andre-simon.de/dokuwiki/doku.php?id=theme_examples
+defaults write org.n8gray.QLColorCode hlTheme darkblue
+
+# Set qlcolorcode max file size in bytes
+defaults write org.n8gray.QLColorCode maxFileSize 1000000
 
 ###############################################################################
 # Kill affected applications                                                  #
