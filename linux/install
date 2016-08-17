@@ -22,8 +22,8 @@ r_symlink .config/sway/config sway.conf
 r_symlink .config/termite/config termite.conf
 
 # Symlink dotfiles
-r_symlink .compton.conf
-r_symlink .i3status.conf
+r_symlink .compton.conf compton.conf
+r_symlink .i3status.conf i3status.conf
 r_symlink .xbindkeysrc
 r_symlink .xinitrc
 r_symlink .Xresources
