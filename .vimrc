@@ -16,6 +16,8 @@ set formatoptions-=c            " disable auto-commenting on Enter
 set formatoptions-=r            " disable auto-commenting on Enter
 set formatoptions-=o            " disable auto-commenting on Enter
 set backspace=indent,eol,start  " backspace over anything in insert mode
+set guioptions-=r               " Remove right scrollbar in MacVim
+set guioptions-=L               " Remove left scrollbar in MacVim
 
 " https://github.com/junegunn/vim-plug
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
