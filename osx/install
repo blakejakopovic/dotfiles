@@ -11,4 +11,4 @@ DOTFILES_DIR="${DOTFILES_DIR}/osx"
 
 echo "==> Installing osx dotfiles..."
 
-echo "${PADDING}[none]"
+r_symlink .git-credentials

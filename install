@@ -72,6 +72,7 @@ r_symlink .curlrc
 r_symlink .gemrc
 r_symlink .gitconfig
 r_symlink .gitignore_global
+r_symlink .gituserconfig
 r_symlink .hushlogin
 r_symlink .nanorc
 r_symlink .screenrc
