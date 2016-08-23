@@ -70,6 +70,7 @@ Plug 'othree/html5.vim'                    " HTML5 omniciomplete and syntax
 Plug 'elzr/vim-json'                       " a better JSON for Vim
 Plug 'Matt-Deacalion/vim-systemd-syntax'   " Syntax highlighting for systemd
 Plug 'PotatoesMaster/i3-vim-syntax'        " Syntax highlighting for i3/config
+Plug 'PProvost/vim-ps1'                    " Syntax highlighting for Powershell
 
 call plug#end()
 
@@ -135,9 +136,6 @@ endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
-" Make enter/return create a new line below and enter INSERT mode
-nmap <Enter> o
-
 " Disable auto-commenting on Enter
 autocmd BufNewFile,BufRead * setlocal formatoptions-=c
 autocmd BufNewFile,BufRead * setlocal formatoptions-=r
@@ -146,3 +144,31 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=o
 " Toggle single and double quotes
 nmap " cs'"
 nmap ' cs"'
+
+" Quit all
+cmap qq qall
+
+" Open NERDTree on launch, if no file arg or stdin
+function! StartUp()
+    if !exists("s:std_in") && 0 == argc()
+        NERDTree
+    end
+endfunction
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * call StartUp()
+
+" Automitically create parent folders on write/save
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(expand('%:h'), 'p')
+        endif
+    endif
+endfunction
+
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
