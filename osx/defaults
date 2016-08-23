@@ -739,10 +739,10 @@ defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.n
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
 ###############################################################################
-# QLColorCode 
+# QLColorCode
 ###############################################################################
 
-# Set qlcolorcode encoding 
+# Set qlcolorcode encoding
 defaults write org.n8gray.QLColorCode textEncoding UTF-16
 defaults write org.n8gray.QLColorCode webkitTextEncoding UTF-16
 
