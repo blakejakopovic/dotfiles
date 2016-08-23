@@ -9,7 +9,6 @@ set -e
 echo ".dotfiles Installer - vALPHA"
 
 # Global variables
-export HOME_DIR="${HOME}"
 export DOTFILESPATH="${HOME}/.dotfiles"
 export DIR_CMD='mkdir -p'
 export LINK_CMD='ln -si'
@@ -27,7 +26,7 @@ esac
 done
 
 # Register directory to be created
-# NB. Path is relative to HOME_DIR (~/)
+# NB. Path is relative to HOME (~/)
 # Usage:
 #   r_directory <dir>
 # Example:
@@ -35,13 +34,13 @@ done
 r_dir() {
   dir=$1
   echo "${PADDING}d  ${dir}"
-  eval "${DIR_CMD} '${HOME_DIR}/${dir}'"
+  eval "${DIR_CMD} '${HOME}/${dir}'"
 }
 export -f r_dir
 
 # Register symlink with to and from values
 # If second argument is missing, it will mirror the first
-# NB. dst path is relative to HOME_DIR (~/)
+# NB. dst path is relative to HOME (~/)
 #     src path is relative to DOTFILESPATH (~/.dotfiles)
 # Usage:
 #   r_symlink <src>
@@ -53,7 +52,7 @@ function r_symlink() {
   dst=$1; src=$2
   [ -z "$src" ] && src="$dst"
   echo "${PADDING}l  ~/${dst} -> ${DOTFILESPATH}/${src}"
-  eval "${LINK_CMD} '${DOTFILESPATH}/${src}' '${HOME_DIR}/${dst}'"
+  eval "${LINK_CMD} '${DOTFILESPATH}/${src}' '${HOME}/${dst}'"
 }
 export -f r_symlink
 
