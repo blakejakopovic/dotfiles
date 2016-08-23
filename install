@@ -95,6 +95,12 @@ for installer in ${os_dotfiles[@]}; do
   [ -r "${installer}" ] && [ -f "${installer}" ] && source "${installer}"
 done
 
+# Remind users to customise example files
+echo "==> Reminders"
+echo "${PADDING}Dont forget to edit .gituserconfig and .private as needed"
+echo "${PADDING}$ cp -i ~/.dotfiles/.gituserconfig{.example,}"
+echo "${PADDING}$ cp -i ~/.dotfiles/.private{.example,}"
+
 # Fin
 echo "Fin :)"
 exit 0
