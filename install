@@ -10,7 +10,7 @@ echo ".dotfiles Installer - vALPHA"
 
 # Global variables
 export HOME_DIR="${HOME}"
-export DOTFILES_DIR="${HOME}/.dotfiles"
+export DOTFILESPATH="${HOME}/.dotfiles"
 export DIR_CMD='mkdir -p'
 export LINK_CMD='ln -si'
 export PADDING='     '
@@ -83,11 +83,11 @@ r_symlink .zshrc
 
 # Install operating system specific dotfiles
 declare -a os_dotfiles
-[[ `uname -s` == "Darwin" ]] && os_dotfiles+=("${DOTFILES_DIR}/osx/install")
-[[ `uname -s` == "Linux"  ]] && os_dotfiles+=("${DOTFILES_DIR}/linux/install")
-[[ -f "/etc/arch-release" ]] && os_dotfiles+=("${DOTFILES_DIR}/arch/install")
-[[ -f "/etc/debian-version" ]] && os_dotfiles+=("${DOTFILES_DIR}/debian/install")
-[[ -f "/etc/redhat-release" ]] && os_dotfiles+=("${DOTFILES_DIR}/redhat/install")
+[[ `uname -s` == "Darwin" ]] && os_dotfiles+=("${DOTFILESPATH}/osx/install")
+[[ `uname -s` == "Linux"  ]] && os_dotfiles+=("${DOTFILESPATH}/linux/install")
+[[ -f "/etc/arch-release" ]] && os_dotfiles+=("${DOTFILESPATH}/arch/install")
+[[ -f "/etc/debian-version" ]] && os_dotfiles+=("${DOTFILESPATH}/debian/install")
+[[ -f "/etc/redhat-release" ]] && os_dotfiles+=("${DOTFILESPATH}/redhat/install")
 
 for installer in ${os_dotfiles[@]}; do
   [ -r "${installer}" ] && [ -f "${installer}" ] && source "${installer}"

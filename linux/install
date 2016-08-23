@@ -2,9 +2,9 @@
 #
 # ~/.dotfiles/linux/install
 
-[ -z "$DOTFILES_DIR" ] && { echo "Error: ${0} cannot be called directly"; exit 1; }
+[ -z "$DOTFILESPATH" ] && { echo "Error: ${0} cannot be called directly"; exit 1; }
 
-DOTFILES_DIR="${DOTFILES_DIR}/linux"
+DOTFILESPATH="${DOTFILESPATH}/linux"
 
 echo "==> Installing Linux dotfiles..."
 
