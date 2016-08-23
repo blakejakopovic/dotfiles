@@ -12,15 +12,49 @@ zstyle ':vcs_info:*' stagedstr 'M'
 zstyle ':vcs_info:*' unstagedstr 'M' 
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%b|%a '
-zstyle ':vcs_info:*' formats '[%F{4}%b%B%F{2}%c%F{3}%u%f%%b] '
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+zstyle ':vcs_info:*' formats '[%F{4}%b%B%F{2}%c%F{3}%u%f%%b] %m '
+zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-untracked
 zstyle ':vcs_info:*' enable git 
 
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-  [[ $(git ls-files --other --directory --exclude-standard | sed q | wc -l | tr -d ' ') == 1 ]] ; then
-  hook_com[unstaged]+='%F{1}??%f'
-fi
+    [[ $(git ls-files --other --directory --exclude-standard | sed q | wc -l | tr -d ' ') == 1 ]] ; then
+    hook_com[unstaged]+='%F{1}??%f'
+  fi
+}
+
+# Show remote ref name and number of commits ahead-of or behind
++vi-git-st() {
+  local ahead behind remote
+  local -a gitstatus
+
+  # Are we on a remote-tracking branch?
+  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+    --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+
+  if [[ -n ${remote} ]] ; then
+    # for git prior to 1.7
+    # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
+    ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -s ' ')
+    (( $ahead )) && gitstatus+=( "[%F{2}+${ahead}%F{4}]" )
+
+    # for git prior to 1.7
+    # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
+    behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -s ' ')
+    (( $behind )) && gitstatus+=( "[%F{1}-${behind}%F{4}]" )
+
+    hook_com[branch]="${hook_com[branch]}${(j:/:)gitstatus} "
+  fi
+}
+
+# Show count of stashed changes
++vi-git-stash() {
+  local -a stashes
+
+  if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
+    stashes=$(git stash list 2>/dev/null | wc -l)
+    hook_com[misc]+=" (${stashes} stashed)"
+  fi
 }
 
 precmd () { vcs_info }
