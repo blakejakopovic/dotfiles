@@ -42,7 +42,7 @@ export -f r_dir
 # Register symlink with to and from values
 # If second argument is missing, it will mirror the first
 # NB. dst path is relative to HOME_DIR (~/)
-#     src path is relative to DOTFILES_DIR (~/.dotfiles)
+#     src path is relative to DOTFILESPATH (~/.dotfiles)
 # Usage:
 #   r_symlink <src>
 #   r_symlink <dst> <src>
@@ -52,8 +52,8 @@ export -f r_dir
 function r_symlink() {
   dst=$1; src=$2
   [ -z "$src" ] && src="$dst"
-  echo "${PADDING}l  ~/${dst} -> ${DOTFILES_DIR}/${src}"
-  eval "${LINK_CMD} '${DOTFILES_DIR}/${src}' '${HOME_DIR}/${dst}'"
+  echo "${PADDING}l  ~/${dst} -> ${DOTFILESPATH}/${src}"
+  eval "${LINK_CMD} '${DOTFILESPATH}/${src}' '${HOME_DIR}/${dst}'"
 }
 export -f r_symlink
 
