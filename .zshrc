@@ -5,7 +5,7 @@ PATH="${HOME}/bin:${PATH}"
 DOTFILESPATH="${HOME}/.dotfiles"
 
 # Load OS specific dotfiles
-declare -a os_dotfiles=("${DOTFILESPATH}")
+os_dotfiles=("${DOTFILESPATH}")
 [[ `uname -s` == "Darwin" ]] && os_dotfiles+=("${DOTFILESPATH}/osx")
 [[ `uname -s` == "Linux"  ]] && os_dotfiles+=("${DOTFILESPATH}/linux")
 [[ -f "/etc/arch-release" ]] && os_dotfiles+=("${DOTFILESPATH}/arch")
