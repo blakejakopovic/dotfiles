@@ -43,7 +43,7 @@ zstyle ':vcs_info:*' enable git
     behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -s ' ')
     (( $behind )) && gitstatus+=( "[%F{1}-${behind}%F{4}]" )
 
-    hook_com[branch]="${hook_com[branch]}${(j:/:)gitstatus} "
+    hook_com[branch]="${hook_com[branch]}${(j:/:)gitstatus}"
   fi
 }
 
