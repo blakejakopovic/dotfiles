@@ -2,3 +2,9 @@
 
 export PATH=/usr/local/sbin:$PATH
 export BACKUP_PATH=$HOME/.backup
+
+# Add Homebrew coreutils to PATH and man pages
+if brew ls --versions coreutils > /dev/null; then
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:${PATH}"
+  export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
+fi
