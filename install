@@ -11,7 +11,7 @@ echo ".dotfiles Installer - vALPHA"
 # Global variables
 export DOTFILESPATH="${HOME}/.dotfiles"
 export DIR_CMD='mkdir -p'
-export LINK_CMD='ln -si'
+export LINK_CMD='ln -sTi'
 export PADDING='     '
 
 # Parse arguments
@@ -20,7 +20,7 @@ do
 case $i in
     -f|--force)
     # Enable force creation of symlinks (destructive)
-    export LINK_CMD='ln -sf'
+    export LINK_CMD='ln -sTf'
     ;;
 esac
 done
