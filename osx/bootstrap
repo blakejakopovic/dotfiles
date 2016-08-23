@@ -1,8 +1,64 @@
 #!/bin/bash
 
-# Ask for the administrator password upfront.
+set -e
+# 
+# OS X Bootstrap Script
+#
+
+# Perform System update (via App Store)
+# Install parallel tools (if VM)
+
+# Ask for sudo
 sudo -v
 
-if [[ ! -f "/usr/bin/xcode-select" ]]; then
-  xcode-select --install
-fi
+
+# Xcode
+xcode-select --install
+
+# Homebrew
+# http://brew.sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Puppet
+# https://docs.puppet.com/puppet/latest/reference/install_osx.html
+# curl https://downloads.puppetlabs.com/mac/10.11/PC1/x86_64/puppet-agent-1.6.0-1.osx10.11.dmg -o puppet-agent-1.6.0-1.osx10.11.dmg
+# OR
+brew cask install puppet-agent
+
+sudo puppet module install thekevjames/homebrew
+
+# pull puppet modules
+git clone https://github.com/blakejakopovic/puppet-workstation /etc/puppetlabs/code/environments/production/modules/
+sudo puppet apply workstation --verbose
+
+# dotfiles (if not using puppet)
+# git clone https://github.com/blakejakopovic/dotfiles ~/.dotfiles
+# ~/.dotfiles/install
+# ~/.dotfiles/osx/defaults
+
+# SSH (create)
+# ssh-keygen
+# GPG (create/import)
+# gpg --gen-key
+
+# Mac AppStore apps (manual install)
+#   Airmail 2
+#   Better Rename 9
+#   ColorSnapper
+#   DBeaver
+#   DaisyDisk
+#   Fatpipe
+#   Gemini 2
+#   I love Stars
+#   LightBlue
+#   Parcel
+#   PredictWind Offshore
+#   Sublime Text 2
+#   The Archive Browser
+#   The Unarchiver
+#   WiFi Explorer
+#   iA Writer
+#   iNet Network Scanner
+
+# Final tweaks
+#   System Preferences > Keyboard > Keyboard tab > Modifier Keys > Caps Lock > Control Key
