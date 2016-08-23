@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# ~/.dotfiles/arch/install
+# ~/.dotfiles/redhat/install
 
 [ -z "$DOTFILES_DIR" ] && { echo "Error: ${0} cannot be called directly"; exit 1; }
 
-DOTFILES_DIR="${DOTFILES_DIR}/arch"
+DOTFILES_DIR="${DOTFILES_DIR}/redhat"
 
-echo "==> Installing Arch dotfiles..."
+echo "==> Installing Red Hat dotfiles..."
 
 echo "${PADDING}[none]"

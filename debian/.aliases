@@ -1,0 +1,6 @@
+# ~/.dotfiles/debian/.aliases
+
+# If not root (sudo helpers)
+if [ $UID -ne 0 ]; then
+  alias apt="sudo atp"
+fi

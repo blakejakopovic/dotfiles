@@ -1,0 +1,7 @@
+# ~/.dotfiles/redhat/.aliases
+
+# If not root (sudo helpers)
+if [ $UID -ne 0 ]; then
+  alias yum="sudo yum"
+  alias dnf="sudo dnf"
+fi

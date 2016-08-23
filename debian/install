@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# ~/.dotfiles/arch/install
+# ~/.dotfiles/debian/install
 
 [ -z "$DOTFILES_DIR" ] && { echo "Error: ${0} cannot be called directly"; exit 1; }
 
-DOTFILES_DIR="${DOTFILES_DIR}/arch"
+DOTFILES_DIR="${DOTFILES_DIR}/debian"
 
-echo "==> Installing Arch dotfiles..."
+echo "==> Installing Debian dotfiles..."
 
 echo "${PADDING}[none]"

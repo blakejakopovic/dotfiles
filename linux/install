@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
 #
 # ~/.dotfiles/linux/install
-# dotfiles -- Personal dotfile repo
-# Author: Blake Jakopovic
-# Git:    https://github.com/blakejakopovic/dotfiles
 
 [ -z "$DOTFILES_DIR" ] && { echo "Error: ${0} cannot be called directly"; exit 1; }
 
 DOTFILES_DIR="${DOTFILES_DIR}/linux"
 
-echo "==> Installing linux dotfiles..."
+echo "==> Installing Linux dotfiles..."
 
 # Ensure required paths
 r_dir .config/i3
