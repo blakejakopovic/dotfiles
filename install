@@ -62,6 +62,9 @@ echo "==> Installing shared dotfiles..."
 # Ensure required paths
 r_dir .config/mpv
 
+# Symlink directories
+r_symlink .git_hooks git_hooks
+
 # Symlink config files
 r_symlink .config/mpv/mpv.conf mpv.conf
 
