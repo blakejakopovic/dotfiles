@@ -10,9 +10,15 @@ set -e
 export VERSION="0.1.0-alpha"
 export VERSION_STRING="Dotfiles Installer v${VERSION}"
 export DOTFILESPATH="${HOME}/.dotfiles"
-export DIR_CMD='mkdir -p'
-export LINK_CMD='ln -sTi'
 export PADDING='     '
+export DIR_CMD='mkdir -p'
+
+# Use -h flag for OS X's BSD ln
+if [[ `uname -s` == "Darwin" ]]; then
+  export LINK_CMD='/bin/ln -shi'
+else
+  export LINK_CMD='/bin/ln -sTi'
+fi
 
 # Parse arguments
 for i in "$@"
@@ -20,7 +26,7 @@ do
 case $i in
     -f|--force)
     # Enable force creation of symlinks (destructive)
-    export LINK_CMD='ln -sTf'
+    export LINK_CMD="${LINK_CMD}f"
     ;;
     # -h|--help)
     # echo "HELP TEXT"
