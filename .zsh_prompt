@@ -9,13 +9,14 @@ autoload -Uz vcs_info
 # F{5} -- purple
 
 zstyle ':vcs_info:*' stagedstr 'M'
-zstyle ':vcs_info:*' unstagedstr 'M' 
+zstyle ':vcs_info:*' unstagedstr 'M'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%b|%a '
 zstyle ':vcs_info:*' formats '[%F{4}%b%B%F{2}%c%F{3}%u%f%%b]%m '
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-untracked
-zstyle ':vcs_info:*' enable git 
+zstyle ':vcs_info:*' enable git
 
+# Show custom output (??) when untracked files exist
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
     [[ $(git ls-files --other --directory --exclude-standard | sed q | wc -l | tr -d ' ') == 1 ]] ; then
@@ -59,5 +60,9 @@ zstyle ':vcs_info:*' enable git
 
 precmd () { vcs_info }
 
-# Set the default ZSH prompt (fallback from OS)
-PROMPT='[zsh] %n@%m %~ ${vcs_info_msg_0_}%B❯%b '
+# [zsh] blakejakopovic@bcos ~/.dotfiles [master[+4]MM??] (1 stashed) ❯
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  PROMPT='[zsh] %n@%m %~ ${vcs_info_msg_0_}%B❯%b '
+else
+  PROMPT='[zsh] %n %~ ${vcs_info_msg_0_}%B❯%b '
+fi
