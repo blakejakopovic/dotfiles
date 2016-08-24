@@ -6,9 +6,9 @@ set -e
 # Author: Blake Jakopovic
 # Git:    https://github.com/blakejakopovic/dotfiles
 
-echo ".dotfiles Installer - vALPHA"
-
 # Global variables
+export VERSION="0.1.0-alpha"
+export VERSION_STRING="Dotfiles Installer v${VERSION}"
 export DOTFILESPATH="${HOME}/.dotfiles"
 export DIR_CMD='mkdir -p'
 export LINK_CMD='ln -sTi'
@@ -22,8 +22,22 @@ case $i in
     # Enable force creation of symlinks (destructive)
     export LINK_CMD='ln -sTf'
     ;;
+    # -h|--help)
+    # echo "HELP TEXT"
+    # exit 0
+    # ;;
+    -v|--version)
+    echo "${VERSION_STRING}"
+    exit 0
+    ;;
+    *)
+    echo "usage: install [-v | --version] [-f | --force]"
+    exit 1
+    ;;
 esac
 done
+
+echo "${VERSION_STRING}"
 
 # Register directory to be created
 # NB. Path is relative to HOME (~/)
