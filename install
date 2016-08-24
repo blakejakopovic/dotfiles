@@ -96,6 +96,7 @@ r_symlink .nanorc
 r_symlink .screenrc
 r_symlink .tmuxrc
 r_symlink .vimrc
+r_symlink .wallpaper
 r_symlink .wgetrc
 r_symlink .zshrc
 
