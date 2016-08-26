@@ -2,17 +2,11 @@
 
 autoload -Uz vcs_info
 
-# F{1} -- red
-# F{2} -- green
-# F{3} -- yellow
-# F{4} -- blue
-# F{5} -- purple
-
 zstyle ':vcs_info:*' stagedstr 'M'
 zstyle ':vcs_info:*' unstagedstr 'M'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%b|%a '
-zstyle ':vcs_info:*' formats '[%F{4}%b%B%F{2}%c%F{3}%u%f%%b]%m '
+zstyle ':vcs_info:*' formats '[%F{blue}%b%B%F{green}%c%F{yellow}%u%f%%b]%m '
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-untracked
 zstyle ':vcs_info:*' enable git
 
@@ -20,7 +14,7 @@ zstyle ':vcs_info:*' enable git
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
     [[ $(git ls-files --other --directory --exclude-standard | sed q | wc -l | tr -d ' ') == 1 ]] ; then
-    hook_com[unstaged]+='%F{1}??%f'
+    hook_com[unstaged]+='%F{red}??%f'
   fi
 }
 
@@ -37,12 +31,12 @@ zstyle ':vcs_info:*' enable git
     # for git prior to 1.7
     # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
     ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -s ' ')
-    (( $ahead )) && gitstatus+=( "[%F{2}+${ahead}%F{4}]" )
+    (( $ahead )) && gitstatus+=( "[%F{green}+${ahead}%F{blue}]" )
 
     # for git prior to 1.7
     # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
     behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -s ' ')
-    (( $behind )) && gitstatus+=( "[%F{1}-${behind}%F{4}]" )
+    (( $behind )) && gitstatus+=( "[%F{red}-${behind}%F{blue}]" )
 
     hook_com[branch]="${hook_com[branch]}${(j:/:)gitstatus}"
   fi
@@ -62,7 +56,7 @@ precmd () { vcs_info }
 
 # [zsh] blakejakopovic@bcos ~/.dotfiles [master[+4]MM??] (1 stashed) ❯
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  PROMPT='[zsh] %n@%m %~ ${vcs_info_msg_0_}%B❯%b '
+  PROMPT='[zsh] %n%F{red}@%m%f %~ ${vcs_info_msg_0_}%B❯%b '
 else
   PROMPT='[zsh] %n %~ ${vcs_info_msg_0_}%B❯%b '
 fi
