@@ -14,6 +14,12 @@ HISTFILE=~/.zsh_history
 setopt inc_append_history share_history
 setopt HIST_IGNORE_SPACE
 
+# Ignore dupes when searching history
+setopt HIST_FIND_NO_DUPS
+
+# Prevent consecutive duplicates from being saved
+setopt HIST_IGNORE_DUPS
+
 # Readline
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
+#bindkey '^A' beginning-of-line
+#bindkey '^E' end-of-line
