@@ -5,6 +5,7 @@ if [ $UID -ne 0 ]; then
   alias iftop="sudo iftop"
   alias iotop="sudo iotop"
   alias mount="sudo mount"
+  alias umount="sudo umount"
   alias nmap="sudo nmap"
   alias mtr="sudo mtr"
 fi
@@ -50,6 +51,7 @@ alias grep-not='grep --color=auto -L'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias igrep='grep --ignore-case'
+alias rgrep='grep --recursive'
 alias grepi='grep --ignore-case'
 alias lsgrep='ls -al | grep --color=auto'
 alias catg='fgrep'
