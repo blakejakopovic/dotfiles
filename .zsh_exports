@@ -20,6 +20,5 @@ setopt HIST_FIND_NO_DUPS
 # Prevent consecutive duplicates from being saved
 setopt HIST_IGNORE_DUPS
 
-# Readline
-#bindkey '^A' beginning-of-line
-#bindkey '^E' end-of-line
+# Enable emacs shortcuts
+bindkey -e
