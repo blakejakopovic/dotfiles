@@ -73,6 +73,7 @@ alias gcan='git commit --amend --no-edit'
 alias gfu='git commit --amend --no-edit'
 alias gdc='git diff --cached'
 alias gaacm='git add --all && git commit --message'
+alias git-rollback-commit='git reset HEAD~'
 
 ossgc() {
   url=$1
@@ -348,3 +349,6 @@ qman() {
 
 # Media
 alias timelapse-jpg2mp4='cat *.jpg | ffmpeg -f image2pipe -r 25 -vcodec mjpeg -i - -vcodec libx264 out2.mp4'
+
+# Python server
+alias python-simple-http-server='python -m SimpleHTTPServer 8000'
