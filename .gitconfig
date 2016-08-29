@@ -32,3 +32,5 @@
   insteadOf = https://github.com/blakejakopovic/
 [include]
   path = ~/.gituserconfig
+[gpg]
+  program = gpg2
