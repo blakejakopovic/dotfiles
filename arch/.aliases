@@ -52,3 +52,6 @@ alias expac-latest="expac --timefmt='%Y-%m-%d %T' '%l\t%n (%v)' | sort | tail -5
 alias expac-list='expac -s "%-30n"'     # list name only
 alias expac-listv='expac -s "%-30n %v"' # list with version
 alias expac-detailed='expac -HM "%011m\t%-20n\t%10d" $( comm -23 <(pacman -Qqen|sort) <(pacman -Qqg base base-devel|sort) ) | sort -rn'
+
+# makepkg
+alias makepkg-skip-compression="PKGEXT'.pkg.tar' makepkg"
