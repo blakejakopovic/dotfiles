@@ -47,6 +47,14 @@ alias brew-upgrade-head='brew reinstall --HEAD' #FORMULA
 alias flush-dns='dscacheutil -flushcache'
 
 # Disk Images
+dmg2iso() { # INPUT OUTPUT
+  filename=$(basename "$1")
+  extension="${filename##*.}"
+  filename="${filename%.*}"
+  output="$filename.img"
+  hdiutil convert -format UDTO -o "$output" $1
+}
+
 iso2img() { # INPUT OUTPUT
   filename=$(basename "$1")
   extension="${filename##*.}"

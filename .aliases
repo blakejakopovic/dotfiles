@@ -73,7 +73,8 @@ alias gcan='git commit --amend --no-edit'
 alias gfu='git commit --amend --no-edit'
 alias gdc='git diff --cached'
 alias gaacm='git add --all && git commit --message'
-alias git-rollback-commit='git reset HEAD~'
+alias git-rollback-hard='git reset HEAD~' # flush staged
+alias git-rollback-soft='git reset --soft HEAD~1' # keep staged
 
 ossgc() {
   url=$1
