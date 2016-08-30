@@ -8,3 +8,6 @@ if brew ls --versions coreutils > /dev/null; then
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:${PATH}"
   export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
 fi
+
+# Add Homebrew gpg and gpgv to PATH
+export PATH="/usr/local/opt/gnupg/libexec/gpgbin:$PATH"
