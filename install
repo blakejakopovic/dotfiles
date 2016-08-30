@@ -6,6 +6,13 @@ set -e
 # Author: Blake Jakopovic
 # Git:    https://github.com/blakejakopovic/dotfiles
 
+# Bash version check
+BASH_MIN_VERSION=4
+if (( ${BASH_VERSION%%.*} < $BASH_MIN_VERSION )); then
+  echo "Please update bash to at least version ${BASH_MIN_VERSION}"
+  exit 1
+fi
+
 # Global variables
 export VERSION="0.1.0-alpha"
 export VERSION_STRING="Dotfiles Installer v${VERSION}"
@@ -28,10 +35,6 @@ case $i in
     # Enable force creation of symlinks (destructive)
     export LINK_CMD="${LINK_CMD}f"
     ;;
-    # -h|--help)
-    # echo "HELP TEXT"
-    # exit 0
-    # ;;
     -v|--version)
     echo "${VERSION_STRING}"
     exit 0
