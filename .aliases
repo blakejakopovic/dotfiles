@@ -119,8 +119,9 @@ alias svim='sudo vim'
 
 # Local tunnel (without tty)
 alias ssh-bg='ssh -nNTf'                # Start SSH session in the background (without tty)
-alias ssh-local-tunnel='ssh -nNTf -L'   # 9000:hostB:80 user@host
-alias ssh-remote-tunnel='ssh -NT -R'  # 9292:localhost:22 user@host
+alias ssh-local-tunnel='ssh -nNTf -o ControlPath=none -L'   # 9000:hostB:80 user@host
+alias ssh-remote-tunnel='ssh -nNTf -o ControlPath=none -R'  # 9292:localhost:22 user@host
+# use ps aux | grep $PORT && kill $PID to close tunnel
 
 # Socks proxy
 alias ssh-socks='ssh -D' # 12345 user@host
