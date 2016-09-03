@@ -57,6 +57,11 @@ Plug 'easymotion/vim-easymotion'           " Vim motions on speed!
 " \\w
 " \\f
 
+Plug 'terryma/vim-multiple-cursors'        " True Sublime Text style multiple selections for Vim
+" 2Gfp<C-n><C-n><C-n>cname
+" vip<C-n>i"<Right><Right><Right>",<Esc>vipJ$r]Idays = [
+" 2Gdf[$r,0f,v<C-n>…<C-n>c<CR><Up><Del><Right><Right><Right><Del>
+
 " Theming
 Plug 'chriskempson/base16-vim'             " Base16 vim theme
 
