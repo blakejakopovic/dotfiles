@@ -29,7 +29,7 @@ NB. The bootstrap script can be run multiple times, and should be run again afte
 
 [**dotfiles installer script**](https://github.com/blakejakopovic/dotfiles/blob/master/install) that supports multiple distributions, creating directories, and symlinks.
 
-```
+```zsh
 # Example directory and symlink creation
 r_dir .ssh
 r_symlink .zshrc
