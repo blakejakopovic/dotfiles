@@ -3,9 +3,9 @@
 Personal dotfiles with support for macOS, Arch Linux, Debian, and Red Hat based distributions.
 
 #### Design Principles
-* Simple homemade bootstrap script
+* Minimal dependencies
 * Support for multiple distributions
-* Convention over configuration (with autoloading)
+* Convention over configuration (autoloading)
 
 #### Installation
 ```zsh
