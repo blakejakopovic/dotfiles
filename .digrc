@@ -1,0 +1,4 @@
+# ~/.dotfiles/.digrc
+
+# Simplify default output
++noall +answer

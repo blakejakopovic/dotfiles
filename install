@@ -96,6 +96,7 @@ r_symlink .gnupg/gpg.conf gpg.conf
 r_symlink .bashrc
 r_symlink .bash_profile
 r_symlink .curlrc
+r_symlink .digrc
 r_symlink .gemrc
 r_symlink .gitconfig
 r_symlink .gitignore_global
