@@ -3,7 +3,7 @@
 # Directory
 alias l='gls --color=auto'
 alias ls='gls --color=auto'
-alias ll='gls --color=auto -al'
+alias ll='gls --color=auto --all --human-readable -l'
 
 # mount
 alias mount-dmg='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount' #FILE.dmg
@@ -44,7 +44,7 @@ alias bo='brew outdated'
 alias brew-upgrade-head='brew reinstall --HEAD' #FORMULA
 
 # DNS
-alias flush-dns='dscacheutil -flushcache'
+alias flush-dns='dscacheutil -flushcache && killall -HUP mDNSResponder'
 
 # Disk Images
 dmg2iso() { # INPUT OUTPUT

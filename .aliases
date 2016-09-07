@@ -130,7 +130,7 @@ alias ssh-socks='ssh -D' # 12345 user@host
 alias curl-no-cache='curl -H "Cache-Control: no-cache"'
 
 # IP
-alias ipaddr='curl -s icanhazip.com'
+alias ipaddr='dig +short myip.opendns.com @resolver1.opendns.com'
 alias ipcalc='ipcalc --nocolor'
 alias ip2location='geoiplookup'
 alias ip2country="geoiplookup $1 | head -1 | awk '{print \$5}'"
