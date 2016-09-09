@@ -45,6 +45,9 @@ alias cpr='cp -R'
 alias find-hard-links='find / -xdev -samefile' #FILE
 alias find-hard-link-id='find / -xdev -inum' #INODE_ID
 
+# Text
+alias chomp="awk 1 ORS=''"
+
 # Grep
 alias grep='grep --color=auto'
 alias grep-not='grep --color=auto -L'
@@ -134,6 +137,16 @@ alias ipaddr='dig +short myip.opendns.com @resolver1.opendns.com'
 alias ipcalc='ipcalc --nocolor'
 alias ip2location='geoiplookup'
 alias ip2country="geoiplookup $1 | head -1 | awk '{print \$5}'"
+
+ipinfo() {
+  IP=${1:=`ipaddr | chomp`}
+  curl "https://dazzlepod.com/ip/${IP}.json"
+}
+
+ipinfo2() {
+  IP=${1:=`ipaddr | chomp`}
+  curl "http://ipinfo.io/${IP}"
+}
 
 # Port
 alias portscan='sudo nmap -sS -A -v' # portscan HOST
