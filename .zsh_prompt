@@ -55,8 +55,8 @@ zstyle ':vcs_info:*' enable git
 precmd () { vcs_info }
 
 # [zsh] blakejakopovic@bcos ~/.dotfiles [master[+4]MM??] (1 stashed) ❯
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  PROMPT='[zsh] %n%F{red}@%m%f %~ ${vcs_info_msg_0_}%B❯%b '
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ $UID -ne 0 ]; then
+  PROMPT='[zsh] %F{red}%n@%m%f %~ ${vcs_info_msg_0_}%B❯%b '
 else
   PROMPT='[zsh] %n %~ ${vcs_info_msg_0_}%B❯%b '
 fi
