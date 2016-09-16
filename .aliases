@@ -10,6 +10,9 @@ if [ $UID -ne 0 ]; then
   alias mtr="sudo mtr"
 fi
 
+# Enable sudo alias expansion
+alias sudo='sudo '
+
 # dotfiles
 alias dotfiles-update="git -C ~/.dotfiles pull"
 alias dotfiles-install="~/.dotfiles/install"
