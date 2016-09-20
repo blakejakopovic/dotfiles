@@ -92,6 +92,13 @@ ossgc() {
   cd $projectpath
 }
 
+# Docker
+alias drm="docker rm"
+alias dps="docker ps"
+
+function datt () {
+    docker start $1 && docker attach $1
+}
 
 # Helpers
 alias one-per-line="sed 's/\s/\n/g'"
