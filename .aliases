@@ -82,6 +82,9 @@ alias gaacm='git add --all && git commit --message'
 alias git-rollback-hard='git reset HEAD~' # flush staged
 alias git-rollback-soft='git reset --soft HEAD~1' # keep staged
 alias grls='git remote --verbose'
+alias git-commit-sign="git commit --gpg-sign"
+alias git-tag-sign="git tag --sign"
+alias git-verify-tag="git verify-tag"
 
 ossgc() {
   url=$1
@@ -336,6 +339,11 @@ alias ding3='echo -e "\a"'
 
 # Gpg
 alias gpg-detached-sig='gpg --armor --detach-sign' # FILE
+
+function gpg-cleansign-file-hash {
+  filename=$1
+  gpg --clearsign --digest-algo SHA256 --output "${filename}.asc" <(sha256sum $filename)
+}
 
 # Dictionary
 function define {
