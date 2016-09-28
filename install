@@ -8,7 +8,7 @@ set -e
 
 # Bash version check
 BASH_MIN_VERSION=4
-if (( ${BASH_VERSION%%.*} < $BASH_MIN_VERSION )); then
+if (( ${BASH_VERSION%%.*} < BASH_MIN_VERSION )); then
   echo "Please update bash to at least version ${BASH_MIN_VERSION}"
   exit 1
 fi
@@ -21,7 +21,7 @@ export PADDING='     '
 export DIR_CMD='mkdir -p'
 
 # Use -h flag for OS X's BSD ln
-if [[ `uname -s` == "Darwin" ]]; then
+if [[ $(uname -s) == "Darwin" ]]; then
   export LINK_CMD='/bin/ln -shi'
 else
   export LINK_CMD='/bin/ln -sTi'
@@ -112,13 +112,13 @@ r_symlink .zshrc
 
 # Install operating system specific dotfiles
 declare -a os_dotfiles
-[[ `uname -s` == "Darwin" ]] && os_dotfiles+=("${DOTFILESPATH}/osx/install")
-[[ `uname -s` == "Linux"  ]] && os_dotfiles+=("${DOTFILESPATH}/linux/install")
+[[ $(uname -s) == "Darwin" ]] && os_dotfiles+=("${DOTFILESPATH}/osx/install")
+[[ $(uname -s) == "Linux"  ]] && os_dotfiles+=("${DOTFILESPATH}/linux/install")
 [[ -f "/etc/arch-release" ]] && os_dotfiles+=("${DOTFILESPATH}/arch/install")
 [[ -f "/etc/debian-version" ]] && os_dotfiles+=("${DOTFILESPATH}/debian/install")
 [[ -f "/etc/redhat-release" ]] && os_dotfiles+=("${DOTFILESPATH}/redhat/install")
 
-for installer in ${os_dotfiles[@]}; do
+for installer in "${os_dotfiles[@]}"; do
   [ -r "${installer}" ] && [ -f "${installer}" ] && source "${installer}"
 done
 
