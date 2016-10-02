@@ -38,7 +38,7 @@ alias wc-clipboard="pbpaste | wc -l | awk '{print \$1}'"
 
 # Homebrew
 alias bu='brew update'
-alias bup='brew upgrade --all'
+alias bup='brew upgrade'
 alias bcu='brew cleanup'
 alias bo='brew outdated'
 alias brew-upgrade-head='brew reinstall --HEAD' #FORMULA
