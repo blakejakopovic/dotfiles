@@ -5,6 +5,7 @@
 [alias]
   b = branch
   s = status
+  st = status --short --branch
   ls = ls-files
   c = commit
   cm = commit --message
