@@ -132,3 +132,5 @@ alias backup-gemlist="gem list | awk '{print $1}' | xargs > $BACKUP_PATH/gemlist
 alias backup-casklist="brew cask list | sed s/\(\!\)//g | xargs > $BACKUP_PATH/casklist"
 alias backup-pip="pip list | awk '{print $1}' | xargs > $BACKUP_PATH/piplist"
 alias backup-npm="npm list -g --depth=0 | awk '{print $2}' | awk -F'@' 'NF {print $1}' | xargs > $BACKUP_PATH/npmlist"
+
+alias screensaver="sudo open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
