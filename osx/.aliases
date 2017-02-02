@@ -32,6 +32,16 @@ hide-hidden-files() {
   killall Finder
 }
 
+show-desktop-icons() {
+  defaults write com.apple.finder CreateDesktop TRUE
+  killall Finder
+}
+
+hide-desktop-icons() {
+  defaults write com.apple.finder CreateDesktop FALSE
+  killall Finder
+}
+
 # Clipboard
 alias sortuniq-clipboard='pbpaste | sort | uniq | pbcopy'
 alias wc-clipboard="pbpaste | wc -l | awk '{print \$1}'"
@@ -44,7 +54,7 @@ alias bo='brew outdated'
 alias brew-upgrade-head='brew reinstall --HEAD' #FORMULA
 
 # DNS
-alias flush-dns='dscacheutil -flushcache && killall -HUP mDNSResponder'
+alias flush-dns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
 # Disk Images
 dmg2iso() { # INPUT OUTPUT
