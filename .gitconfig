@@ -3,6 +3,7 @@
   excludesfile = ~/.gitignore_global
   quotepath = false
 [alias]
+  a = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
   b = branch
   s = status
   st = status --short --branch
@@ -17,6 +18,8 @@
   ap = add --patch
   update-timestamp = commit --amend --reset-author
   dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
+  undocommit = !git reset --soft HEAD^ # undo commit back to staged
+  scrap = !git reset --hard HEAD^ # reset back to commit before HEAD
 [color]
   branch = auto
   diff = auto
