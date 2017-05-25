@@ -4,3 +4,6 @@
 ## Please remove .example file extension
 
 export HOMEBREW_GITHUB_API_TOKEN="YOUR TOKEN"
+
+export AWS_ACCESS_KEY_ID="SECRET-ID"
+export AWS_SECRET_ACCESS_KEY="SECRET-KEY"
