@@ -1,0 +1,3 @@
+# iTerm2
+iterm2_shell_path=${HOME}/.dotfiles/osx/iterm/.iterm2_shell_integration.zsh
+test -e $iterm2_shell_path && source $iterm2_shell_path
