@@ -32,8 +32,16 @@
   autosetuprebase = always
 [advice]
   statusHints = true
+[url "https://github/"]
+  insteadOf = "gh:"
+[url "git@github.com:"]
+  pushInsteadOf = "gh:"
 [url "git@github.com:blakejakopovic"]
   insteadOf = https://github.com/blakejakopovic/
+[url "https://aur.archlinux.org/"]
+  insteadOf = "aur:"
+[url "ssh+git://aur4.archlinux.org/"]
+  pushInsteadOf = "aur:"
 [include]
   path = ~/.gituserconfig
 [gpg]
