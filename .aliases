@@ -205,7 +205,7 @@ alias youtube2mp3='youtube-dl --extract-audio --audio-format mp3'
 alias genpass='xxd -l 20 -c 20 -p /dev/urandom'
 
 # Speedtest
-alias speedtest='speedtest_cli'
+alias speedtest='speedtest-cli'
 
 # DNS
 alias eh="sudo $EDITOR /etc/hosts"
