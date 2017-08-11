@@ -130,8 +130,8 @@ ssh-fingerprint () {
 alias mountc='mount | column -t'
 
 # Vim
-alias v='vim'
-alias vi='vim'
+alias v='vim || vi'
+alias vi='vim || vi'
 alias svim='sudo vim'
 
 # Local tunnel (without tty)
