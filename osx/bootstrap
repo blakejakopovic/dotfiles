@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-# 
+#
 # OS X Bootstrap Script
 #
 
@@ -11,13 +11,22 @@ set -e
 # Ask for sudo
 sudo -v
 
+sudo scutil --set ComputerName MACBOOKPRO
+sudo scutil --set LocalHostName MACBOOKPRO
+
+# Firewall
+/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
+/usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+pkill -HUP socketfilterfw
 
 # Xcode
 xcode-select --install
 
-# Homebrew
 # http://brew.sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew analytics off
 
 # Puppet
 # https://docs.puppet.com/puppet/latest/reference/install_osx.html
