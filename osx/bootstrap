@@ -11,20 +11,20 @@ set -e
 # Ask for sudo
 sudo -v
 
-sudo scutil --set ComputerName MACBOOKPRO
-sudo scutil --set LocalHostName MACBOOKPRO
+sudo scutil --set ComputerName BMBP
+sudo scutil --set LocalHostName BMBP
 
 # Firewall
 /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
 /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
-pkill -HUP socketfilterfw
+#pkill -HUP socketfilterfw
 
 # Xcode
-xcode-select --install
+#xcode-select --install
 
 # http://brew.sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew analytics off
 
@@ -34,10 +34,16 @@ brew analytics off
 # OR
 brew cask install puppet-agent
 
-sudo puppet module install thekevjames/homebrew
+#sudo puppet module install thekevjames/homebrew
 
 # pull puppet modules
-git clone https://github.com/blakejakopovic/puppet-workstation /etc/puppetlabs/code/environments/production/modules/
+#sudo git clone https://github.com/blakejakopovic/puppet-workstation.git /etc/puppetlabs/code/environments/production/modules/workstation
+
+sudo puppet module install blakejakopovic/workstation
+sudo puppet module install thekevjames/homebrew
+
+# Edit username
+
 sudo puppet apply workstation --verbose
 
 # dotfiles (if not using puppet)
