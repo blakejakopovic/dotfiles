@@ -386,3 +386,6 @@ alias timelapse-jpg2mp4='cat *.jpg | ffmpeg -f image2pipe -r 25 -vcodec mjpeg -i
 
 # Python server
 alias python-simple-http-server='python -m SimpleHTTPServer 8000'
+
+# PowerShell
+alias powershell=pwsh
