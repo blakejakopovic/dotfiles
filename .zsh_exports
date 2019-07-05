@@ -22,3 +22,6 @@ setopt HIST_IGNORE_DUPS
 
 # Enable emacs shortcuts
 bindkey -e
+
+# Enable auto cd
+setopt auto_cd
