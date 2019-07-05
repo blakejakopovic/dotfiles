@@ -46,3 +46,6 @@
   path = ~/.gituserconfig
 [gpg]
   program = gpg2
+[user]
+	name = Blake Jakopovic
+	email = blake.jakopovic@gmail.com
