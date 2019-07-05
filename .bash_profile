@@ -19,3 +19,6 @@ for base_path in ${os_dotfiles[@]}; do
   done;
   unset file
 done
+
+# added by Anaconda3 5.2.0 installer
+export PATH="/Users/blakejakopovic/anaconda3/bin:$PATH"
