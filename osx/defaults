@@ -766,3 +766,6 @@ done
 
 echo "Notice: Some of these changes require a logout/restart to take effect."
 echo "Done."
+
+# Make touchpad more sensitive
+defaults write -g com.apple.trackpad.scaling 6
