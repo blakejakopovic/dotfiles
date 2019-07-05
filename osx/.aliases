@@ -144,3 +144,19 @@ alias backup-pip="pip list | awk '{print $1}' | xargs > $BACKUP_PATH/piplist"
 alias backup-npm="npm list -g --depth=0 | awk '{print $2}' | awk -F'@' 'NF {print $1}' | xargs > $BACKUP_PATH/npmlist"
 
 alias screensaver="sudo open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+
+# Flush Routes
+flush-route() {
+  #netstat -r
+  # Flush a few times as it seems more reliable
+  for i in {0..4}; do
+    sudo route -n flush
+  done
+
+  sudo ifconfig en0 down
+  sudo ifconfig en0 up
+}
+
+flush-iconcache() {
+  sudo find /private/var/folders/ -name com.apple.dock.iconcache -exec rm {} \;
+}

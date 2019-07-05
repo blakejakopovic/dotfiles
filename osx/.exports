@@ -11,3 +11,6 @@ fi
 
 # Add Homebrew gpg and gpgv to PATH
 export PATH="/usr/local/opt/gnupg/libexec/gpgbin:$PATH"
+
+# Anaconda
+export PATH="/Users/blakejakopovic/anaconda3/bin:$PATH"
