@@ -20,3 +20,5 @@ if [[ -f $HOME/.config/base16-shell/scripts/base16-phd.sh ]]; then
   BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-phd.sh"
   [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 fi
+
+source ~/.dotfiles/extensions/zsh-autosuggestions.zsh
