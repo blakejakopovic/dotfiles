@@ -160,3 +160,6 @@ flush-route() {
 flush-iconcache() {
   sudo find /private/var/folders/ -name com.apple.dock.iconcache -exec rm {} \;
 }
+
+# iCloud Sync
+alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/"

@@ -389,3 +389,8 @@ alias python-simple-http-server='python -m SimpleHTTPServer 8000'
 
 # PowerShell
 alias powershell=pwsh
+
+# Awk
+function nth() {
+  awk -v nth=$1 'NR % nth == 1'
+}

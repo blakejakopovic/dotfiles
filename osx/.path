@@ -1,3 +1,4 @@
 # ~/.dotfiles/osx/.path
 
+export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin/local/sbin:$PATH"
