@@ -77,3 +77,10 @@ sudo puppet apply workstation --verbose
 
 # Final tweaks
 #   System Preferences > Keyboard > Keyboard tab > Modifier Keys > Caps Lock > Control Key
+
+# Set Keyboard defaults
+defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+
+# Set Trackpad defaults
+defaults write -g com.apple.trackpad.scaling 3
