@@ -14,6 +14,11 @@ git clone https://github.com/blakejakopovic/dotfiles ~/.dotfiles
 
 # Run bootstrap script
 ~/.dotfiles/install
+
+OR
+
+ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/__dotfiles ~/.dotfiles
+
 ```
 
 #### Customisation
