@@ -49,8 +49,10 @@ alias wc-clipboard="pbpaste | wc -l | awk '{print \$1}'"
 # Homebrew
 alias bu='brew update'
 alias bup='brew upgrade'
+alias buc='brew cask upgrade'
 alias bcu='brew cleanup'
 alias bo='brew outdated'
+alias boc='brew cask outdated'
 alias brew-upgrade-head='brew reinstall --HEAD' #FORMULA
 
 # DNS
@@ -162,4 +164,8 @@ flush-iconcache() {
 }
 
 # iCloud Sync
-alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/"
+alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+export icloud="~/Library/Mobile Documents/com~apple~CloudDocs"
+
+# USB Tethering DNS
+alias iphone-dns=sudo networksetup -setdnsservers "iPhone USB" 1.1.1.1
